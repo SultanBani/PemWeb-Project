@@ -15,7 +15,7 @@ include "db/koneksi.php";
     <div class="navbar">
         <h2>ObatSaku - Dashboard</h2>
         <ul>
-            <li><a href="pages/dashboard.php">Dashboard</a></li>
+            <li><a href="pages/dashboard.php">Beranda</a></li>
             <li><a href="pages/kelola_obat.php">Kelola Obat</a></li>
             <li><a href="pages/data_pesanan.php">Data Pesanan</a></li>
             <li><a href="pages/pembayaran.php">Pembayaran</a></li>
