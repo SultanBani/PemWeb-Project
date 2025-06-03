@@ -97,8 +97,11 @@ h2 {
 /* Grid untuk kartu obat */
 .katalog-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
-    gap: 28px;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    /* Original: gap: 30px; */
+    /* Modifikasi untuk menambah jarak vertikal: */
+    column-gap: 30px; 
+    row-gap: 65px;    
 }
 
 /* Card obat */
@@ -111,6 +114,7 @@ h2 {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     cursor: default;
     user-select: none;
+    margin: 12px 0; /* Margin ini juga berkontribusi pada jarak vertikal */
 
     display: flex;
     flex-direction: column;
@@ -161,14 +165,26 @@ h2 {
     font-size: 1.15rem;
     color: var(--warna-primary-hover);
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
 
-/* Tombol tambah ke keranjang */
+/* Deskripsi */
+.deskripsi {
+    max-height: 60px; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3; 
+    -webkit-box-orient: vertical;
+    font-size: 0.95rem;
+    color: #444;
+    margin-bottom: 1px;
+}
+
 .form-tambah-keranjang {
     margin-top: auto;
 }
