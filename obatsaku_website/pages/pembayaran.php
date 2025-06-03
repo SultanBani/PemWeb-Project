@@ -1,4 +1,31 @@
-<?php include "../db/koneksi.php"; ?>
+<?php 
+include "../db/koneksi.php";
+
+// Kurangi jumlah
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && isset($_POST['id'])) {
+    $id = intval($_POST['id']);
+    $action = $_POST['action'];
+
+    $cek = mysqli_query($conn, "SELECT jumlah FROM keranjang WHERE id = $id");
+    $data = mysqli_fetch_assoc($cek);
+
+    if ($data) {
+        if ($action === 'plus') {
+            mysqli_query($conn, "UPDATE keranjang SET jumlah = jumlah + 1 WHERE id = $id");
+        } elseif ($action === 'minus') {
+            if ($data['jumlah'] > 1) {
+                mysqli_query($conn, "UPDATE keranjang SET jumlah = jumlah - 1 WHERE id = $id");
+            } else {
+                mysqli_query($conn, "DELETE FROM keranjang WHERE id = $id");
+            }
+        }
+    }
+
+    header("Location: pembayaran.php");
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -14,7 +41,6 @@
     $sql = "SELECT * FROM keranjang";
     $result = mysqli_query($conn, $sql);
     $total = 0;
-    $produkList = [];
 
     if (mysqli_num_rows($result) > 0): ?>
         <table>
@@ -27,12 +53,23 @@
             <?php while ($row = mysqli_fetch_assoc($result)):
                 $subtotal = $row['harga'] * $row['jumlah'];
                 $total += $subtotal;
-                $produkList[] = "{$row['nama_produk']} ({$row['jumlah']}x)";
             ?>
                 <tr>
                     <td><?= htmlspecialchars($row['nama_produk']) ?></td>
                     <td>Rp<?= number_format($row['harga'], 0, ',', '.') ?></td>
-                    <td><?= $row['jumlah'] ?></td>
+                    <td>
+                        <form method="POST" style="display:inline;">
+                            <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                            <input type="hidden" name="action" value="minus">
+                            <button type="submit" class="btn-ikon">−</button>
+                        </form>
+                        <?= $row['jumlah'] ?>
+                        <form method="POST" style="display:inline;">
+                            <input type="hidden" name="id" value="<?= $row['id'] ?>">
+                            <input type="hidden" name="action" value="plus">
+                            <button type="submit" class="btn-ikon">+</button>
+                        </form>
+                    </td>
                     <td>Rp<?= number_format($subtotal, 0, ',', '.') ?></td>
                 </tr>
             <?php endwhile; ?>
@@ -54,29 +91,26 @@
 <script>
 function cetakDanKirim() {
     const nomorWA = "6285367336284";
-
-    // Ambil isi tabel dan total
     const rows = document.querySelectorAll("table tr");
     let pesan = "*Detail Pesanan:*\n";
 
     for (let i = 1; i < rows.length; i++) {
         const cols = rows[i].querySelectorAll("td");
-        if (cols.length === 4) {
-            pesan += `- ${cols[0].innerText} (${cols[2].innerText}x) = ${cols[3].innerText}\n`;
+        if (cols.length >= 4) {
+            const nama = cols[0].innerText;
+            const jumlah = cols[2].innerText.replace(/[^0-9]/g, '');
+            const subtotal = cols[3].innerText;
+            pesan += `- ${nama} (${jumlah}x) = ${subtotal}\n`;
         }
     }
 
     const total = document.getElementById("total-harga").innerText;
     pesan += `\n*Total Pembayaran:* ${total}`;
 
-    // Kirim ke WhatsApp
     const waUrl = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesan)}`;
     window.open(waUrl, '_blank');
-
-    // Cetak nota
     window.print();
 
-    // Kosongkan keranjang setelah proses
     fetch("hapus_keranjang.php", { method: 'POST' })
         .then(res => res.json())
         .then(res => {

@@ -1,91 +1,114 @@
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #FBFBFB;
-    margin: 0; padding: 0; color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 40px 0;
 }
 
 .container {
-    max-width: 900px;
-    margin: 40px auto;
-    background: #E8F9FF;
-    padding: 40px;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #e6f7ff;
+    padding: 30px;
     border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
 
 h2 {
     text-align: center;
-    color: #4A4A4A;
-    font-size: 28px;
+    color: #333;
     margin-bottom: 30px;
 }
 
 table {
     width: 100%;
     border-collapse: collapse;
-    background-color: #fff;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
-th {
-    background-color: #C5BAFF;
-    color: #222;
+table th, table td {
+    padding: 14px;
     text-align: left;
-    padding: 14px;
 }
 
-td {
-    padding: 14px;
-    border-top: 1px solid #e2e2e2;
+table th {
+    background-color: #bcaaff;
+    color: #2d2d2d;
+    font-weight: 600;
+}
+
+table td {
+    background-color: #ffffff;
+    border-bottom: 1px solid #f0f0f0;
 }
 
 .total {
-    text-align: right;
     font-size: 18px;
     margin-top: 20px;
+    text-align: right;
+    color: #333;
 }
 
-.btn-wa, .btn-cetak {
-    display: inline-block;
-    background: linear-gradient(to right, #C5BAFF, #C4D9FF);
-    color: #222;
+.total strong {
+    color: #111;
+}
+
+.btn-wa {
+    background-color: #a78bfa;
+    color: #fff;
     padding: 12px 24px;
     border: none;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
+    border-radius: 12px;
     cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s;
-    margin-left: 10px;
+    font-weight: 600;
+    transition: all 0.3s ease;
 }
 
-.btn-wa:hover, .btn-cetak:hover {
-    background: linear-gradient(to right, #b7aaff, #aac9ff);
-    transform: translateY(-2px);
+.btn-wa:hover {
+    background-color: #7c3aed;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+    transform: scale(1.05);
 }
 
 .back-link {
     display: inline-block;
     margin-top: 30px;
-    color: #444;
     text-decoration: none;
+    color: #333;
     font-size: 14px;
+    transition: color 0.2s ease;
 }
 
 .back-link:hover {
-    text-decoration: underline;
+    color: #6c5ce7;
 }
 
-.empty-message {
+.qty-button {
+    padding: 5px 10px;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    background-color: #f4f4f4;
+    color: #333;
+    cursor: pointer;
+    border-radius: 6px;
+    margin: 0 4px;
+    transition: all 0.3s ease;
+}
+
+.qty-button:hover {
+    background-color: #dcd6fa;
+    transform: scale(1.1);
+    border-color: #a78bfa;
+}
+
+input.qty-input {
+    width: 40px;
     text-align: center;
-    color: #666;
-    font-style: italic;
-}
-
-@media print {
-    .btn-wa, .btn-cetak, .back-link {
-        display: none;
-    }
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 5px;
+    background-color: #fff;
+    margin: 0 5px;
 }
