@@ -17,10 +17,10 @@ include "db/koneksi.php";
         <ul>
             <li><a href="pages/dashboard.php">Dashboard</a></li>
             <li><a href="pages/kelola_obat.php">Kelola Obat</a></li>
-            <li><a href="pages/pesan_pengguna.php">Pesan Pengguna</a></li>
             <li><a href="pages/data_pesanan.php">Data Pesanan</a></li>
             <li><a href="pages/pembayaran.php">Pembayaran</a></li>
             <li><a href="pages/daftar_pengguna.php">Daftar Pengguna</a></li>
+            <li><a href="pages/pesan_pengguna.php">Hubungi Kami</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
