@@ -1,24 +1,51 @@
-.service-item {
-    transition: .5s;
+.service-card {
+  background-color: #C4D9FF;
+  border-radius: 15px;
+  padding: 30px 20px;
+  text-align: left;
+  transition: all 0.3s ease;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-.service-item:hover {
-    margin-top: -10px;
-    box-shadow: 0 .5rem 1.5rem rgba(0, 0, 0, .08);
+.service-card:hover {
+  transform: translateY(-5px);
 }
 
-.service-item .btn {
-    width: 40px;
-    height: 40px;
-    display: inline-flex;
-    align-items: center;
-    background: #FFFFFF;
-    border-radius: 40px;
-    white-space: nowrap;
-    overflow: hidden;
-    transition: .5s;
+.icon-circle {
+  background-color: white;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #007bff;
+  font-size: 20px;
+  margin-bottom: 20px;
 }
 
-.service-item:hover .btn {
-    width: 140px;
+.plus-btn,
+.read-more {
+  margin-top: 20px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.plus-btn {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: white;
+  color: #007bff;
+  line-height: 30px;
+  text-align: center;
+}
+
+.read-more {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: white;
+  color: #007bff;
 }
