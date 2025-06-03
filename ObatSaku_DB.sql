@@ -77,6 +77,16 @@ CREATE TABLE pesan (
     FOREIGN KEY (username) REFERENCES pengguna(username)
 );
 
+CREATE TABLE keranjang (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nama_produk VARCHAR(255),
+    harga INT,
+    jumlah INT
+);
+
+INSERT INTO keranjang (nama_produk, harga, jumlah) VALUES
+('Paracetamol', 5000, 2),
+('Vitamin C', 10000, 1);
 
 -- Data Dummy untuk tabel obat
 INSERT INTO obat (nama_obat, jenis_obat, deskripsi, indikasi, dosis, efek_samping, harga, stok, gambar, tanggal_kedaluwarsa) VALUES
