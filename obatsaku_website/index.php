@@ -36,8 +36,8 @@ include "db/koneksi.php";
                 <div class="row g-5">
                     <div class="col-lg-6">
                         <div class="d-flex flex-column">
-                            <img class="img-fluid rounded w-75 align-self-end" src="img/about-1.jpg" alt="">
-                            <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="img/about-2.jpg" alt="" style="margin-top: -25%;">
+                            <img class="img-fluid rounded w-75 align-self-end" src="obatsaku_website/medical.jpg" alt="">
+                            <img class="img-fluid rounded w-50 bg-white pt-3 pe-3" src="obatsaku_website/medical2.jpg" alt="" style="margin-top: -25%;">
                         </div>
                     </div>
                     <div class="col-lg-6">
