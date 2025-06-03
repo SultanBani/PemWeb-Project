@@ -1,0 +1,273 @@
+/* Warna dasar */
+:root {
+    --warna-bg: #e8f9ff;
+    --warna-card-bg: #fbfbfb;
+    --warna-primary: #7c3aed;
+    --warna-primary-hover: #5a22c8;
+    --warna-text: #2d2d2d;
+    --warna-shadow: rgba(124, 58, 237, 0.15);
+}
+
+/* Reset dan body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #e8f9ff 0%, #c5baff 100%);
+    margin: 0;
+    padding: 40px 0;
+    color: var(--warna-text);
+    min-height: 100vh;
+}
+
+/* Container utama */
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    background-color: var(--warna-card-bg);
+    padding: 30px 40px;
+    border-radius: 16px;
+    box-shadow: 0 8px 30px var(--warna-shadow);
+}
+
+/* Judul */
+h2 {
+    text-align: center;
+    font-weight: 700;
+    margin-bottom: 30px;
+    color: var(--warna-primary);
+}
+
+/* Form pencarian */
+.form-search {
+    max-width: 400px;
+    margin: 0 auto 40px;
+    display: flex;
+    gap: 12px;
+}
+
+.form-search input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 20px;
+    border-radius: 25px;
+    border: 2px solid var(--warna-primary);
+    font-size: 1rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+
+.form-search input[type="text"]:focus {
+    border-color: var(--warna-primary-hover);
+    box-shadow: 0 0 8px var(--warna-primary-hover);
+}
+
+/* Tombol cari */
+.form-search button {
+    background-color: var(--warna-primary);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 24px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.form-search button:hover {
+    background-color: var(--warna-primary-hover);
+    transform: scale(1.05);
+}
+
+/* Tombol reset (link) */
+.btn-reset {
+    align-self: center;
+    padding: 8px 16px;
+    margin-left: 10px;
+    border-radius: 25px;
+    border: 2px solid var(--warna-primary);
+    color: var(--warna-primary);
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-reset:hover {
+    background-color: var(--warna-primary);
+    color: white;
+}
+
+/* Grid untuk kartu obat */
+.katalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill,minmax(220px,1fr));
+    gap: 28px;
+}
+
+/* Card obat */
+.card-obat {
+    background-color: var(--warna-bg);
+    border-radius: 18px;
+    box-shadow: 0 10px 30px var(--warna-shadow);
+    padding: 20px 15px 30px;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+    user-select: none;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.card-obat:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 40px rgba(124, 58, 237, 0.25);
+}
+
+/* Container gambar */
+.img-container {
+    width: 100%;
+    max-height: 180px;
+    overflow: hidden;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 8px 15px var(--warna-shadow);
+}
+
+.img-container img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.img-container:hover img {
+    transform: scale(1.05);
+}
+
+/* Nama obat */
+.card-obat h3 {
+    font-size: 1.4rem;
+    color: var(--warna-primary);
+    margin-bottom: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Harga */
+.harga {
+    font-size: 1.15rem;
+    color: var(--warna-primary-hover);
+    font-weight: 600;
+    margin-bottom: 20px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Tombol tambah ke keranjang */
+.form-tambah-keranjang {
+    margin-top: auto;
+}
+
+.btn-tambah {
+    background-color: var(--warna-primary);
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    user-select: none;
+}
+
+.btn-tambah:hover {
+    background-color: var(--warna-primary-hover);
+    transform: scale(1.05);
+}
+
+/* Pesan kosong */
+.empty-message {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+    margin-top: 40px;
+}
+
+/* Tombol kembali ke beranda */
+.back-home-container {
+    text-align: center;
+    margin-top: 70px;
+}
+
+.btn-back-home {
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid var(--warna-primary);
+    color: var(--warna-primary);
+    padding: 12px 30px;
+    border-radius: 25px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-back-home:hover {
+    background-color: var(--warna-primary);
+    color: white;
+}
+
+/* Popup notif */
+.notif-popup {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--warna-primary);
+    color: white;
+    padding: 15px 25px;
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(124, 58, 237, 0.4);
+    font-weight: 700;
+    z-index: 9999;
+    user-select: none;
+    animation: fadeinout 3.5s ease forwards;
+}
+
+@keyframes fadeinout {
+    0% {opacity: 0; transform: translateY(-10px);}
+    10% {opacity: 1; transform: translateY(0);}
+    90% {opacity: 1; transform: translateY(0);}
+    100% {opacity: 0; transform: translateY(-10px);}
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .container {
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .form-search {
+        flex-direction: column;
+        max-width: 100%;
+        gap: 12px;
+    }
+
+    .form-search button, .btn-reset {
+        width: 100%;
+        margin-left: 0;
+    }
+
+    .btn-back-home {
+        width: 100%;
+        padding: 12px 0;
+    }
+}
