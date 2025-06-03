@@ -1,6 +1,5 @@
 <?php
 include "../db/koneksi.php";
-
 session_start();
 
 $keyword = '';
@@ -8,7 +7,6 @@ if (isset($_GET['search'])) {
     $keyword = trim(mysqli_real_escape_string($conn, $_GET['search']));
 }
 
-// Handle tambah ke keranjang
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat'])) {
     $id_obat = intval($_POST['id_obat']);
 
@@ -16,7 +14,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat'])) {
     $result = mysqli_query($conn, $sql);
     if ($result && mysqli_num_rows($result) > 0) {
         $obat = mysqli_fetch_assoc($result);
-
         $nama_produk = mysqli_real_escape_string($conn, $obat['nama_obat']);
 
         $cekKeranjang = mysqli_query($conn, "SELECT * FROM keranjang WHERE nama_produk = '$nama_produk'");
@@ -48,22 +45,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat'])) {
     <div class="container">
         <h2>Katalog Obat</h2>
 
-        <!-- Form Pencarian -->
         <form method="GET" class="form-search">
-            <input
-                type="text"
-                name="search"
-                placeholder="Cari nama obat..."
-                value="<?= htmlspecialchars($keyword) ?>"
-                autocomplete="off"
-            />
+            <input type="text" name="search" placeholder="Cari nama obat..." value="<?= htmlspecialchars($keyword) ?>" autocomplete="off" />
             <button type="submit">Cari</button>
             <?php if ($keyword): ?>
                 <a href="kelola_obat.php" class="btn-reset">Reset</a>
             <?php endif; ?>
         </form>
 
-        <!-- Notifikasi -->
         <?php if (isset($_SESSION['notif'])): ?>
             <div class="notif-popup" id="notif-popup">
                 <?= $_SESSION['notif'] ?>
@@ -89,6 +78,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat'])) {
                 </div>
                 <h3><?= htmlspecialchars($row['nama_obat']) ?></h3>
                 <p class="harga">Rp<?= number_format($row['harga'], 0, ',', '.') ?></p>
+                <p class="deskripsi"><?= nl2br(htmlspecialchars($row['deskripsi'])) ?></p>
                 <form method="POST" class="form-tambah-keranjang">
                     <input type="hidden" name="id_obat" value="<?= $row['id_obat'] ?>" />
                     <button type="submit" class="btn-tambah">Tambah ke Keranjang</button>
