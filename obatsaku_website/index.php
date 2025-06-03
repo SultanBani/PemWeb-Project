@@ -24,5 +24,20 @@ include "db/koneksi.php";
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div>
+
+    <!-- Main Kontent -->
+<main>
+     <?php
+        $page = isset($_GET['page']) ? $_GET['page'] : 'dashboard';
+
+        $file = "pages/$page.php";
+        if (file_exists($file)) {
+            include($file);
+        } else {
+            echo "<h3>masi kosong</h3>";
+        }
+        ?>
+    </main>
+
 </body>
 </html>
