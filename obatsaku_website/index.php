@@ -43,8 +43,8 @@ include "db/koneksi.php";
                     <div class="col-lg-6">
                         <p class="d-inline-block border rounded-pill py-1 px-4">Tentang Kami</p>
                         <h1 class="mb-4">Kenapa Sebaiknya Percaya Kami? Kenali Kami!</h1>
-                        <p>Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos.</p>
-                        <p class="mb-4">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. Clita clita labore.</p>
+                        <p>ObatSaku adalah sebuah sistem informasi katalog obat berbasis web yang dirancang untuk memudahkan masyarakat dalam mencari dan memahami informasi seputar obat-obatan. Melalui tampilan yang sederhana dan fitur pencarian yang efisien, pengguna dapat mengakses data obat seperti nama, jenis, kegunaan, dosis, efek samping, hingga harga secara cepat dan akurat. ObatSaku hadir sebagai solusi digital untuk meningkatkan literasi obat dan membantu pengguna dalam mengambil keputusan yang lebih bijak terkait penggunaan obat.</p>
+                        <p class="mb-4">Ada apa saja disini?</p>
                         <p><i class="far fa-check-circle text-primary me-3"></i>Quality health care</p>
                         <p><i class="far fa-check-circle text-primary me-3"></i>Only Qualified Doctors</p>
                         <p><i class="far fa-check-circle text-primary me-3"></i>Medical Research Professionals</p>
