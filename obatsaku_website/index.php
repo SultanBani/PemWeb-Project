@@ -34,7 +34,7 @@ include "db/koneksi.php";
         if (file_exists($file)) {
             include($file);
         } else {
-            echo "<h3>masi kosong</h3>";
+            echo "<h3>yyy</h3>";
         }
         ?>
     </main>
