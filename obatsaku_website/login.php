@@ -20,21 +20,36 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <title>Login - ObatSaku</title>
-    <link rel="stylesheet" href="assets/css/login.css">
+    <link rel="stylesheet" href="assets/css/login.css" />
 </head>
 <body>
     <div class="login-container">
         <h2 class="login-title">Login ke ObatSaku</h2>
+
         <?php if (!empty($error)) echo "<p class='error-message'>$error</p>"; ?>
-        <form method="post">
-            <input type="text" name="username" class="form-input" placeholder="Username" required>
-            <input type="password" name="password" class="form-input" placeholder="Password" required>
+
+        <form method="post" autocomplete="off">
+            <div class="form-group">
+                <div class="form-col" style="width: 100%;">
+                    <label for="username">Username</label>
+                    <input type="text" name="username" id="username" class="form-input" required />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-col" style="width: 100%;">
+                    <label for="password">Password</label>
+                    <input type="password" name="password" id="password" class="form-input" required />
+                </div>
+            </div>
+
             <button type="submit" class="form-button">Login</button>
         </form>
+
         <div class="form-footer">
-            <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
+            <p>Belum punya akun? <a href="register.php">Daftar</a></p>
         </div>
     </div>
 </body>
