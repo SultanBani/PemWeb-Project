@@ -13,6 +13,7 @@ include "db/koneksi.php";
     <link rel="stylesheet" href="assets/css/layanan.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <script defer src="assets/style.js"></script>
 </head>
 <body>
     <div class="navbar">
@@ -31,7 +32,6 @@ include "db/koneksi.php";
     <!-- Main Konten -->
     <main>
 
-        <!-- Tentang Kami Start -->
         <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
@@ -42,23 +42,23 @@ include "db/koneksi.php";
                 </div>
             </div>
             <div class="col-lg-6">
-                <span class="badge-about">About Us</span>
-                <h1 class="about-title mb-4">Why You Should Trust Us? Get Know About Us!</h1>
-                <p class="text-muted">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                <p class="text-muted">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
+                <span class="badge-about">ObatSaku</span>
+                <h1 class="about-title mb-4">Hallo Semua!!</h1>
+                <p class="text-muted">ObatSaku adalah sebuah sistem informasi katalog obat berbasis web yang dirancang untuk memudahkan masyarakat dalam mencari dan memahami informasi seputar obat-obatan. Melalui tampilan yang sederhana dan fitur pencarian yang efisien, pengguna dapat mengakses data obat seperti nama, jenis, kegunaan, dosis, efek samping, hingga harga secara cepat dan akurat.</p>
+                <p class="text-muted">ObatSaku hadir sebagai solusi digital untuk meningkatkan literasi obat dan membantu pengguna dalam mengambil keputusan yang lebih bijak terkait penggunaan obat.</p>
                 <ul class="about-list">
-                <li><i class="fas fa-check-circle"></i>Quality health care</li>
-                <li><i class="fas fa-check-circle"></i>Only Qualified Doctors</li>
-                <li><i class="fas fa-check-circle"></i>Medical Research Professionals</li>
+                <li><i class="fas fa-check-circle"></i>Terpercaya</li>
+                <li><i class="fas fa-check-circle"></i>Dapat diandalkan</li>
+                <li><i class="fas fa-check-circle"></i>Profesional</li>
                 </ul>
-                <a class="btn btn-primary mt-3" href="#">Read More</a>
+                <a class="btn btn-primary mt-3" href="#">Sekian</a>
             </div>
             </div>
         </div>
         </div>
         <!-- Tentang Kami End -->
 
-        <!-- Layanan Kami Start -->
+        <!-- Kategori Start -->
         <div class="container py-5">
             <h2 class="text-center fw-bold mb-5">Kategori Obat</h2>
             <div class="row g-4">
@@ -112,11 +112,67 @@ include "db/koneksi.php";
                 </div>
             </div>
         </div>
-        <!-- Layanan Kami End -->
+        <!-- Kategori End -->
 
 
-        <!-- Image Galerry -->
+        <!-- Galeri -->
+         <!-- Gambar 1 -->
+         <h1 style="text-align: center;">Obat</h1>
+          <div class="containerBerita">
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <!-- Tambah sebanyak mungkin box -->
+          </div>
 
+          <!-- Gambar 2 -->
+           <div class="containerBerita">
+            <div class="postBerita">
+              <img src="gambar/siswa1.jpeg">
+            </div>
+            <div class="postBerita">
+              <img src="gambar/fasilitas1.jpeg">
+            </div>
+            <div class="postBerita">
+              <img src="gambar/fasilitas2.jpeg">
+            </div>
+            <div class="postBerita">
+              <img src="gambar/fasilitas3.jpeg">
+            </div>
+            <div class="postBerita">
+              <img src="gambar/guru2.png">
+            </div>
+            <div class="postBerita">
+              <img src="gambar/guru1.jpeg">
+            </div>
+            <div class="postBerita">
+              <img src="gambar/fasilitas1.jpeg">
+            </div>
+            <div class="postBerita">
+              <img src="gambar/fasilitas1.jpeg">
+            </div>
     </main>
+
 </body>
 </html>
