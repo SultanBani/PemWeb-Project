@@ -149,28 +149,28 @@ include "db/koneksi.php";
           <!-- Gambar 2 -->
            <div class="containerBerita">
             <div class="postBerita">
-              <img src="gambar/siswa1.jpeg">
+              <img src="assets/img/Paracetamol.png">
             </div>
             <div class="postBerita">
-              <img src="gambar/fasilitas1.jpeg">
+              <img src="assets/img/Paracetamol.png">
             </div>
             <div class="postBerita">
-              <img src="gambar/fasilitas2.jpeg">
+              <img src="assets/img/Paracetamol.png">
             </div>
             <div class="postBerita">
-              <img src="gambar/fasilitas3.jpeg">
+              <img src="assets/img/Paracetamol.png">
             </div>
             <div class="postBerita">
-              <img src="gambar/guru2.png">
+              <img src="assets/img/Paracetamol.png">
             </div>
             <div class="postBerita">
-              <img src="gambar/guru1.jpeg">
+              <img src="assets/img/Paracetamol.png">
             </div>
             <div class="postBerita">
-              <img src="gambar/fasilitas1.jpeg">
+              <img src="assets/img/Paracetamol.png">
             </div>
             <div class="postBerita">
-              <img src="gambar/fasilitas1.jpeg">
+              <img src="assets/img/Paracetamol.png">
             </div>
     </main>
 
