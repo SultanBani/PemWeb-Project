@@ -37,9 +37,8 @@ include "db/koneksi.php";
             <div class="row g-5 align-items-center">
             <div class="col-lg-6">
                 <div class="d-flex flex-column position-relative">
-                <img class="img-fluid rounded w-75 align-self-end" src="img/madical.jpg" alt="gambar1">
-                <img class="img-fluid rounded w-50 bg-white pt-3 pe-3 position-absolute bottom-0 start-0" src="img/medical2.jpg" alt="" style="margin-bottom: -20px; margin-left: -20px;">
-
+                <img class="img-fluid rounded w-75 align-self-end" src="assets/img/medical.jpg" alt="gambar1">
+                <img class="img-kecil" src="assets/img/medical2.jpg" alt="Gambar kecil">
                 </div>
             </div>
             <div class="col-lg-6">
