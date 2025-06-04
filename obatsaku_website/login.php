@@ -18,16 +18,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
-<head><title>Login - ObatSaku</title></head>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Login - ObatSaku</title>
+    <link rel="stylesheet" href="assets/css/login.css">
+</head>
 <body>
-    <h2>Login</h2>
-    <?php if (!empty($error)) echo "<p style='color:red;'>$error</p>"; ?>
-    <form method="post">
-        Username: <input type="text" name="username" required><br><br>
-        Password: <input type="password" name="password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-    <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
+    <div class="login-container">
+        <h2 class="login-title">Login ke ObatSaku</h2>
+        <?php if (!empty($error)) echo "<p class='error-message'>$error</p>"; ?>
+        <form method="post">
+            <input type="text" name="username" class="form-input" placeholder="Username" required>
+            <input type="password" name="password" class="form-input" placeholder="Password" required>
+            <button type="submit" class="form-button">Login</button>
+        </form>
+        <div class="form-footer">
+            <p>Belum punya akun? <a href="register.php">Daftar di sini</a></p>
+        </div>
+    </div>
 </body>
 </html>
