@@ -35,7 +35,11 @@ include "db/koneksi.php";
    </body>
     <!-- Main Konten -->
     <main>
+<<<<<<< HEAD
+        <!-- Tentang Kami Start -->
+=======
 <!-- Tentang Kami -->
+>>>>>>> 2c2d358998473ea2e5e4a1b32831ddb6ae75658b
         <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
@@ -177,8 +181,8 @@ include "db/koneksi.php";
               <img src="assets/img/Paracetamol.png">
             </div>
     </main>
-
-
 <script src="assets/header.js"></script>
 </body>
 </html>
+
+<?php include "footer.php"; ?>

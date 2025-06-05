@@ -1,6 +1,8 @@
 <!-- footer.php -->
 <?php
-session_start();
+$_SESSION['username'] = 'admin'; // Dummy login
+
+include "db/koneksi.php";
 ?>
 
 <footer>
@@ -8,11 +10,7 @@ session_start();
     <link rel="shortcut icon" href="/assets/icon/favicon.ico" type="image/x-icon" />
 
     <!-- CSS -->
-<<<<<<< HEAD
     <link rel="stylesheet" href="assets/css/footer.css" />
-=======
-   <link rel="stylesheet" href="assets/css/footer.css" />
->>>>>>> 4723c41616deb129aaf6df0894d29d42aabbd88e
     
     <!-- Icon -->
     <link
@@ -37,15 +35,15 @@ session_start();
       </div>
       <div class="box">
         <h2>Menu</h2>
-        <a href="#">Beranda</a>
-        <a href="#">Katalog Obat</a>
-        <a href="#">Data Pesanan</a>
-        <a href="#">Hubungi Kami</a>
+        <a href="#">Dashboard</a>
+        <a href="#">Katalog</a>
+        <a href="#">Kontak Kami</a>
       </div>
       <div class="box">
         <h2>Kontak</h2>
         <p><i class="fa-solid fa-envelope"></i> obatsaku0406@gmail.com</p>
-        <p><i class="fa-solid fa-phone"></i>0856-2394-7689</p>
+        <p><i class="fa-solid fa-phone"></i> 085789660026</p>
+        <p><i class="fa-solid fa-location-pin"></i> Jalan Ujung Berung V, Kel. Cigending, Kec. Ujung Berung, Kota Bandung, Jawa Barat.</p>
       </div>
     </div>
 
@@ -54,3 +52,4 @@ session_start();
     </div>
   </div>
 </footer>
+
