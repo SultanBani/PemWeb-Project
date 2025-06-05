@@ -8,7 +8,7 @@ session_start();
     <link rel="shortcut icon" href="/assets/icon/favicon.ico" type="image/x-icon" />
 
     <!-- CSS -->
-    <link rel="stylesheet" href="/dist/css/style.css" />
+    <link rel="stylesheet" href="assets/css/footer.css" />
     
     <!-- Icon -->
     <link

@@ -48,7 +48,7 @@ include "db/koneksi.php";
                   </li>
 
                  <li class="nav__item">
-                     <a href="logout.php" class="nav__link">logout</a>
+                     <a href="logout.php" class="nav__link">Logout</a>
                   </li>
 
                </ul>
