@@ -30,7 +30,6 @@ include "db/koneksi.php";
 
     <!-- Main Konten -->
     <main>
-
         <!-- Tentang Kami Start -->
         <div class="container-xxl py-5">
         <div class="container">
