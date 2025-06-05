@@ -185,4 +185,4 @@ include "db/koneksi.php";
 </body>
 </html>
 
-<?php include "footer.php"; ?>
+
