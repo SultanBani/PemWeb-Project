@@ -1,4 +1,7 @@
 <!-- footer.php -->
+<?php
+session_start();
+?>
 
 <footer>
    <!-- Fav Icon -->
