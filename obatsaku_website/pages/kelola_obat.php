@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 <?php //include '../header.php';
+=======
+<?php include 'header.php';
+>>>>>>> 5158148cf8843dcd5730045e3a87fd1038ab13ea
 
 include "../db/koneksi.php"; // Pastikan path ini benar
 if (session_status() == PHP_SESSION_NONE) {
