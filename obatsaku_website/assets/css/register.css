@@ -1,123 +1,138 @@
-<?php
-session_start();
-include "db/koneksi.php";
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = htmlspecialchars(trim($_POST['username']));
-    $email = htmlspecialchars(trim($_POST['email']));
-    $nama_depan = htmlspecialchars(trim($_POST['nama_depan']));
-    $nama_belakang = htmlspecialchars(trim($_POST['nama_belakang']));
-    $no_hp = htmlspecialchars(trim($_POST['no_hp']));
-    $password = htmlspecialchars(trim($_POST['password']));
-    $tipe_pengguna = htmlspecialchars(trim($_POST['tipe_pengguna']));
-    $status_akun = htmlspecialchars(trim($_POST['status_akun']));
-
-    // Hash password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Proses upload foto profil
-    $foto_nama = null;
-    if (isset($_FILES['foto_profil']) && $_FILES['foto_profil']['error'] === UPLOAD_ERR_OK) {
-        $foto_tmp = $_FILES['foto_profil']['tmp_name'];
-        $foto_nama = basename($_FILES['foto_profil']['name']);
-        $target_dir = "uploads/";
-        $target_file = $target_dir . $foto_nama;
-
-        // Buat folder uploads jika belum ada
-        if (!file_exists($target_dir)) {
-            mkdir($target_dir, 0755, true);
-        }
-
-        move_uploaded_file($foto_tmp, $target_file);
-    }
-
-    // Cek username/email duplikat
-    $cek = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$username' OR email = '$email'");
-    if (mysqli_num_rows($cek) > 0) {
-        $error = "Username atau Email sudah digunakan!";
-    } else {
-        // Simpan ke database
-        $query = "INSERT INTO pengguna (username, email, nama_depan, nama_belakang, no_hp, password, foto_profil, tipe_pengguna, status_akun)
-                  VALUES ('$username', '$email', '$nama_depan', '$nama_belakang', '$no_hp', '$hashed_password', '$foto_nama', '$tipe_pengguna', '$status_akun')";
-
-        if (mysqli_query($conn, $query)) {
-            header("Location: login.php?pesan=register_berhasil");
-            exit;
-        } else {
-            $error = "Gagal menyimpan data, silakan coba lagi.";
-        }
-    }
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-?>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-    <meta charset="UTF-8" />
-    <title>Register - ObatSaku</title>
-    <link rel="stylesheet" href="assets/css/register.css" />
-</head>
-<body>
-    <div class="register-container">
-        <h2 class="register-title">Daftar Akun ObatSaku</h2>
 
-        <?php if (!empty($error)) echo "<p class='error-message'>$error</p>"; ?>
+html, body {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f0fa;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
 
-        <form method="post" action="register.php" enctype="multipart/form-data" autocomplete="off">
-            <div class="form-group">
-                <div class="form-col">
-                    <label for="username">Username</label>
-                    <input type="text" name="username" id="username" class="form-input" required />
-                </div>
-                <div class="form-col">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" class="form-input" required />
-                </div>
-            </div>
+.register-container {
+  background-color: #ffffff;
+  padding: 40px 30px;
+  border-radius: 20px;
+  box-shadow: 0 12px 30px rgba(108, 43, 157, 0.15);
+  width: 100%;
+  max-width: 720px;
+}
 
-            <div class="form-group">
-                <div class="form-col">
-                    <label for="nama_depan">Nama Depan</label>
-                    <input type="text" name="nama_depan" id="nama_depan" class="form-input" required />
-                </div>
-                <div class="form-col">
-                    <label for="nama_belakang">Nama Belakang</label>
-                    <input type="text" name="nama_belakang" id="nama_belakang" class="form-input" required />
-                </div>
-            </div>
+.register-title {
+  text-align: center;
+  color: #580b94;
+  font-size: 26px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
 
-            <div class="form-group">
-                <div class="form-col">
-                    <label for="no_hp">Nomor HP</label>
-                    <input type="text" name="no_hp" id="no_hp" class="form-input" required />
-                </div>
-                <div class="form-col">
-                    <label for="password">Password</label>
-                    <input type="password" name="password" id="password" class="form-input" required />
-                </div>
-            </div>
+label {
+  display: block;
+  margin-bottom: 6px;
+  color: #4a3b70;
+  font-weight: 600;
+  font-size: 14px;
+}
 
-            <div class="form-group">
-                <div class="form-col">
-                    <label for="foto_profil">Foto Profil</label>
-                    <input type="file" name="foto_profil" id="foto_profil" class="form-input" accept="image/*" />
-                </div>
-                <div class="form-col">
-                    <label for="tipe_pengguna">Tipe Pengguna</label>
-                    <select name="tipe_pengguna" id="tipe_pengguna" class="form-input" required>
-                        <option value="Pengguna">Pengguna</option>
-                        <option value="Admin">Admin</option>
-                    </select>
-                </div>
-            </div>
+.form-group {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 20px;
+}
 
-            <input type="hidden" name="status_akun" value="Aktif" />
+.form-col {
+  display: flex;
+  flex-direction: column;
+}
 
-            <button type="submit" class="form-button">Daftar</button>
-        </form>
+.form-input {
+  width: 100%;
+  padding: 14px 16px;
+  border: 1px solid #cdb8e9;
+  border-radius: 12px;
+  font-size: 15px;
+  color: #4a3b70;
+  background-color: #fdfdff;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
 
-        <div class="form-footer">
-            <p>Sudah punya akun? <a href="login.php">Login</a></p>
-        </div>
-    </div>
-</body>
-</html>
+.form-input:focus {
+  border-color: #6c2b9d;
+  box-shadow: 0 0 5px rgba(108, 43, 157, 0.3);
+  outline: none;
+}
+
+input[type="file"].form-input {
+  padding: 10px 14px;
+  background-color: #fafafa;
+  border: 1px dashed #cdb8e9;
+  font-size: 14px;
+}
+
+/* Tombol */
+.form-button {
+  background-color: #C5BAFF;
+  color: white;
+  border: none;
+  padding: 14px;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.form-button:hover {
+  background-color: #580b94;
+}
+
+.form-footer {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.form-footer a {
+  color: #C5BAFF;
+  text-decoration: none;
+}
+
+.form-footer a:hover {
+  color: #580b94;
+  text-decoration: underline;
+}
+
+/* Pesan error */
+.error-message {
+  background-color: #ffe5e5;
+  color: #d83737;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+}
+
+/* Responsif */
+@media (max-width: 700px) {
+  .form-group {
+    grid-template-columns: 1fr;
+  }
+
+  .register-container {
+    padding: 30px 20px;
+  }
+}
