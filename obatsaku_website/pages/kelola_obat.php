@@ -1,4 +1,4 @@
-<?php include '../header.php';
+<?php //include '../header.php';
 
 include "../db/koneksi.php"; // Pastikan path ini benar
 if (session_status() == PHP_SESSION_NONE) {
