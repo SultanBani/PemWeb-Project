@@ -181,8 +181,8 @@ include "db/koneksi.php";
               <img src="assets/img/Paracetamol.png">
             </div>
     </main>
-
-
 <script src="assets/header.js"></script>
 </body>
 </html>
+
+<?php include "footer.php"; ?>
