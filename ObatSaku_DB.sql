@@ -83,11 +83,27 @@ CREATE TABLE keranjang (
     harga INT,
     jumlah INT
 );
-
-INSERT INTO keranjang (nama_produk, harga, jumlah) VALUES
-('Paracetamol', 5000, 2),
-('Vitamin C', 10000, 1);
-
+CREATE TABLE detail_pesanan (
+    id_detail_pesanan INT AUTO_INCREMENT PRIMARY KEY,
+    id_pesanan INT NOT NULL,
+    id_obat INT NULL,
+    nama_produk VARCHAR(255) NOT NULL,
+    harga DECIMAL(10,2) NOT NULL, -- Harga per item saat transaksi
+    jumlah INT NOT NULL,
+    subtotal DECIMAL(10,2) NOT NULL,
+    FOREIGN KEY (id_pesanan) REFERENCES pesanan(id_pesanan) ON DELETE CASCADE,
+    FOREIGN KEY (id_obat) REFERENCES obat(id_obat) ON DELETE SET NULL
+);
+-- Jika belum ada id_obat
+ALTER TABLE keranjang ADD COLUMN id_obat INT NULL;
+-- Tambahkan foreign key (opsional tapi direkomendasikan)
+ALTER TABLE keranjang ADD CONSTRAINT fk_keranjang_obat FOREIGN KEY (id_obat) REFERENCES obat(id_obat) ON DELETE SET NULL;
+-- Ubah tipe data harga jika masih INT
+ALTER TABLE keranjang MODIFY COLUMN harga DECIMAL(10,2);
+DELETE FROM keranjang;
+INSERT INTO keranjang (id_obat, nama_produk, harga, jumlah) VALUES
+(1, 'Paracetamol', 5000.00, 2),  
+(3, 'Vitamin C', 3000.00, 1); 
 -- Data Dummy untuk tabel obat
 INSERT INTO obat (nama_obat, jenis_obat, deskripsi, indikasi, dosis, efek_samping, harga, stok, gambar, tanggal_kedaluwarsa) VALUES
 ('Paracetamol', 'Tablet', 'Obat untuk menurunkan demam dan meredakan nyeri.', 'Demam, sakit kepala', '1 tablet, 3 kali sehari', 'Mual, ruam kulit', 5000.00, 100, 'paracetamol.jpg', '2025-12-31'),
