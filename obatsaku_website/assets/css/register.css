@@ -4,24 +4,48 @@ include "db/koneksi.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars(trim($_POST['username']));
+    $email = htmlspecialchars(trim($_POST['email']));
+    $nama_depan = htmlspecialchars(trim($_POST['nama_depan']));
+    $nama_belakang = htmlspecialchars(trim($_POST['nama_belakang']));
+    $no_hp = htmlspecialchars(trim($_POST['no_hp']));
     $password = htmlspecialchars(trim($_POST['password']));
+    $tipe_pengguna = htmlspecialchars(trim($_POST['tipe_pengguna']));
+    $status_akun = htmlspecialchars(trim($_POST['status_akun']));
 
-    $result = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$username'");
-    
-    if (mysqli_num_rows($result) === 1) {
-        $data = mysqli_fetch_assoc($result);
+    // Hash password
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        // Jika password disimpan dalam bentuk teks biasa
-        if ($password === $data['password']) {
-            $_SESSION['username'] = $data['username'];
-            $_SESSION['nama'] = $data['nama_depan'] . " " . $data['nama_belakang'];
-            header("Location: dashboard.php");
+    // Proses upload foto profil
+    $foto_nama = null;
+    if (isset($_FILES['foto_profil']) && $_FILES['foto_profil']['error'] === UPLOAD_ERR_OK) {
+        $foto_tmp = $_FILES['foto_profil']['tmp_name'];
+        $foto_nama = basename($_FILES['foto_profil']['name']);
+        $target_dir = "uploads/";
+        $target_file = $target_dir . $foto_nama;
+
+        // Buat folder uploads jika belum ada
+        if (!file_exists($target_dir)) {
+            mkdir($target_dir, 0755, true);
+        }
+
+        move_uploaded_file($foto_tmp, $target_file);
+    }
+
+    // Cek username/email duplikat
+    $cek = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$username' OR email = '$email'");
+    if (mysqli_num_rows($cek) > 0) {
+        $error = "Username atau Email sudah digunakan!";
+    } else {
+        // Simpan ke database
+        $query = "INSERT INTO pengguna (username, email, nama_depan, nama_belakang, no_hp, password, foto_profil, tipe_pengguna, status_akun)
+                  VALUES ('$username', '$email', '$nama_depan', '$nama_belakang', '$no_hp', '$hashed_password', '$foto_nama', '$tipe_pengguna', '$status_akun')";
+
+        if (mysqli_query($conn, $query)) {
+            header("Location: login.php?pesan=register_berhasil");
             exit;
         } else {
-            $error = "Password salah!";
+            $error = "Gagal menyimpan data, silakan coba lagi.";
         }
-    } else {
-        $error = "Username tidak ditemukan!";
     }
 }
 ?>
