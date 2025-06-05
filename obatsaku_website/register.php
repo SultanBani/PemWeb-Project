@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "db/koneksi.php"; // pastikan file koneksi ini ada dan benar
+include "db/koneksi.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = htmlspecialchars(trim($_POST['username']));
@@ -10,7 +10,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $no_hp = htmlspecialchars(trim($_POST['no_hp']));
     $password = htmlspecialchars(trim($_POST['password']));
     $tipe_pengguna = htmlspecialchars(trim($_POST['tipe_pengguna']));
-    $status_akun = "Aktif";
+    $status_akun = htmlspecialchars(trim($_POST['status_akun']));
 
     // Hash password
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
@@ -23,6 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $target_dir = "uploads/";
         $target_file = $target_dir . $foto_nama;
 
+        // Buat folder uploads jika belum ada
         if (!file_exists($target_dir)) {
             mkdir($target_dir, 0755, true);
         }
@@ -30,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         move_uploaded_file($foto_tmp, $target_file);
     }
 
-    // Cek duplikasi username/email
+    // Cek username/email duplikat
     $cek = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$username' OR email = '$email'");
     if (mysqli_num_rows($cek) > 0) {
         $error = "Username atau Email sudah digunakan!";
@@ -40,10 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                   VALUES ('$username', '$email', '$nama_depan', '$nama_belakang', '$no_hp', '$hashed_password', '$foto_nama', '$tipe_pengguna', '$status_akun')";
 
         if (mysqli_query($conn, $query)) {
-            // Simpan session jika mau langsung login
-            $_SESSION['username'] = $username;
-            $_SESSION['tipe_pengguna'] = $tipe_pengguna;
-            header("Location: beranda.php");
+            header("Location: login.php?pesan=register_berhasil");
             exit;
         } else {
             $error = "Gagal menyimpan data, silakan coba lagi.";
@@ -54,8 +52,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <title>Daftar - ObatSaku</title>
+    <meta charset="UTF-8" />
+    <title>Register - ObatSaku</title>
     <link rel="stylesheet" href="assets/css/register.css" />
 </head>
 <body>
@@ -64,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <?php if (!empty($error)) echo "<p class='error-message'>$error</p>"; ?>
 
-        <form method="post" action="<?= htmlspecialchars($_SERVER['PHP_SELF']) ?>" enctype="multipart/form-data" autocomplete="off">
+        <form method="post" action="register.php" enctype="multipart/form-data" autocomplete="off">
             <div class="form-group">
                 <div class="form-col">
                     <label for="username">Username</label>
@@ -111,6 +109,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     </select>
                 </div>
             </div>
+
+            <input type="hidden" name="status_akun" value="Aktif" />
 
             <button type="submit" class="form-button">Daftar</button>
         </form>
