@@ -1,3 +1,12 @@
+<?php include 'header.php';
+
+session_start();
+$_SESSION['username'] = 'admin'; // Dummy login
+
+include "db/koneksi.php";
+
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -5,6 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Hubungi Kami - ObatSaku</title>
     <link rel="stylesheet" href="assets/css/hubungikami.css" />
+    <link rel="stylesheet" href="assets/css/header.css">
 </head>
 <body>
     <div class="container">
@@ -60,5 +70,7 @@ Temukan obat, pahami kegunaannya, dan jaga kesehatanmu dengan lebih mudah bersam
             </form>
         </div>
     </div>
+    <script src="assets/header.js"></script>
 </body>
+
 </html>

@@ -1,4 +1,4 @@
-<?php include 'header.php';
+<?php include "../header.php";
 
 include "../db/koneksi.php"; // Pastikan path ini benar
 if (session_status() == PHP_SESSION_NONE) {
@@ -105,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat_to_cart'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Katalog Obat - Obatsaku</title>
     <link rel="stylesheet" href="../assets/css/kelola_obat.css" /> <!-- Pastikan path CSS benar -->
+    <link rel="stylesheet" href="../assets/css/header.css">
     <style>
         .notif-popup {
             position: fixed;
@@ -234,6 +235,6 @@ if (notif) {
         }
     }, 3000); // Notifikasi hilang setelah 3 detik
 }
-</script>
-</body>
-</html>
+<script src="assets/header.js"></script>
+<body>
+<html>

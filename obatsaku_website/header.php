@@ -44,7 +44,7 @@ include "db/koneksi.php";
                   </li>
 
                   <li class="nav__item">
-                     <a href="pages/pesan_pengguna.php" class="nav__link">Hubungi Kami</a>
+                     <a href="hubungikami.php" class="nav__link">Hubungi Kami</a>
                   </li>
 
                  <li class="nav__item">
