@@ -1,8 +1,10 @@
-<?php
+<?php include 'header.php';
+
 session_start();
 $_SESSION['username'] = 'admin'; // Dummy login
 
 include "db/koneksi.php";
+
 ?>
 
 <!DOCTYPE html>
@@ -30,13 +32,6 @@ include "db/koneksi.php";
             <li><a href="logout.php">Logout</a></li>
         </ul>
     </div> -->
-
-
-
-
-
-
-    
    </body>
     <!-- Main Konten -->
     <main>
