@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 /* Footer */
 footer {
@@ -87,4 +88,95 @@ footer {
 .copyright p span {
   font-weight: bold;
 }
+=======
+
+/* Footer */
+footer {
+  margin-top: 100px;
+  padding 50px 0;
+  background-color: #C4D9FF;
+  color:  rgb(111, 116, 103);
+}
+
+.footer-box {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  row-gap: 50px;
+}
+
+.footer-box h2 {
+  margin-bottom: 20px;
+}
+
+.footer-box{
+  line-height: 2;
+  font-size: 14px;
+}
+.footer-box .box:nth-child(1) {
+  width: 400px;
+}
+
+.footer-box .social {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.footer-box .social a{
+  font-size: 28px;
+  text-decoration: none;
+  color: rgb(111, 116, 103);
+}
+
+.footer-box .social a:hover {
+  color: indigo;
+}
+
+.footer-box .box:nth-child(2) {
+  width: 100px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.footer-box .box:nth-child(2) h2{
+    margin-bottom: 0;
+  } 
+
+.footer-box .box:nth-child(2) a {
+    text-decoration: none;
+    font-size: 14px;
+    color:  rgb(111, 116, 103);
+  }
+
+.footer-box .box:nth-child(2) a:hover {
+  color: indigo;
+
+}
+.footer-box .box:nth-child(3) {
+  width: 300px;
+}
+
+.footer-box .box:nth-child(3) p {
+  margin-bottom: 10px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.copyright{
+  margin-top: 50px;
+  text-align: center;
+}
+
+.copyright p {
+  font-size: 14px;
+}
+
+.copyright p span {
+  font-weight: bold;
+}
+>>>>>>> 2c2d358998473ea2e5e4a1b32831ddb6ae75658b
 /* Footer */

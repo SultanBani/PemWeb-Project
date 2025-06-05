@@ -1,21 +1,26 @@
-<?php
+<?php include 'header.php';
+
 session_start();
 $_SESSION['username'] = 'admin'; // Dummy login
 
 include "db/koneksi.php";
+
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>ObatSaku</title>
+    <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/layanan.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
+    <script defer src="assets/style.js"></script>
 </head>
 <body>
-    <div class="navbar">
+    <!-- <div class="navbar">
         <h2>ObatSaku - Dashboard</h2>
         <ul>
             <li><a href="pages/dashboard.php">Beranda</a></li>
@@ -26,11 +31,15 @@ include "db/koneksi.php";
             <li><a href="pages/pesan_pengguna.php">Hubungi Kami</a></li>
             <li><a href="logout.php">Logout</a></li>
         </ul>
-    </div>
-
+    </div> -->
+   </body>
     <!-- Main Konten -->
     <main>
+<<<<<<< HEAD
         <!-- Tentang Kami Start -->
+=======
+<!-- Tentang Kami -->
+>>>>>>> 2c2d358998473ea2e5e4a1b32831ddb6ae75658b
         <div class="container-xxl py-5">
         <div class="container">
             <div class="row g-5 align-items-center">
@@ -41,23 +50,23 @@ include "db/koneksi.php";
                 </div>
             </div>
             <div class="col-lg-6">
-                <span class="badge-about">About Us</span>
-                <h1 class="about-title mb-4">Why You Should Trust Us? Get Know About Us!</h1>
-                <p class="text-muted">Tempor erat elitr rebum at clita. Diam dolor diam ipsum sit. Aliqu diam amet diam et eos. Clita erat ipsum et lorem et sit, sed stet lorem sit clita duo justo magna dolore erat amet</p>
-                <p class="text-muted">Stet no et lorem dolor et diam, amet duo ut dolore vero eos. No stet est diam rebum amet diam ipsum. Clita clita labore, dolor duo nonumy clita sit at, sed sit sanctus dolor eos.</p>
+                <span class="badge-about">ObatSaku</span>
+                <h1 class="about-title mb-4">Hallo Semua!!</h1>
+                <p class="text-muted">ObatSaku adalah sebuah sistem informasi katalog obat berbasis web yang dirancang untuk memudahkan masyarakat dalam mencari dan memahami informasi seputar obat-obatan. Melalui tampilan yang sederhana dan fitur pencarian yang efisien, pengguna dapat mengakses data obat seperti nama, jenis, kegunaan, dosis, efek samping, hingga harga secara cepat dan akurat.</p>
+                <p class="text-muted">ObatSaku hadir sebagai solusi digital untuk meningkatkan literasi obat dan membantu pengguna dalam mengambil keputusan yang lebih bijak terkait penggunaan obat.</p>
                 <ul class="about-list">
-                <li><i class="fas fa-check-circle"></i>Quality health care</li>
-                <li><i class="fas fa-check-circle"></i>Only Qualified Doctors</li>
-                <li><i class="fas fa-check-circle"></i>Medical Research Professionals</li>
+                <li><i class="fas fa-check-circle"></i>Terpercaya</li>
+                <li><i class="fas fa-check-circle"></i>Dapat diandalkan</li>
+                <li><i class="fas fa-check-circle"></i>Profesional</li>
                 </ul>
-                <a class="btn btn-primary mt-3" href="#">Read More</a>
+                <a class="btn btn-primary mt-3" href="#">Sekian</a>
             </div>
             </div>
         </div>
         </div>
         <!-- Tentang Kami End -->
 
-        <!-- Layanan Kami Start -->
+        <!-- Kategori Start -->
         <div class="container py-5">
             <h2 class="text-center fw-bold mb-5">Kategori Obat</h2>
             <div class="row g-4">
@@ -111,11 +120,69 @@ include "db/koneksi.php";
                 </div>
             </div>
         </div>
-        <!-- Layanan Kami End -->
+        <!-- Kategori End -->
 
 
-        <!-- Image Galerry -->
+        <!-- Galeri -->
+         <!-- Gambar 1 -->
+         <h1 style="text-align: center;">Obat</h1>
+          <div class="containerBerita">
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/amoxicillin.jpg">
+            </div>
+            <!-- Tambah sebanyak mungkin box -->
+          </div>
 
+          <!-- Gambar 2 -->
+           <div class="containerBerita">
+            <div class="postBerita">
+              <img src="assets/img/Paracetamol.png">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/Paracetamol.png">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/Paracetamol.png">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/Paracetamol.png">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/Paracetamol.png">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/Paracetamol.png">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/Paracetamol.png">
+            </div>
+            <div class="postBerita">
+              <img src="assets/img/Paracetamol.png">
+            </div>
     </main>
+
+
+<script src="assets/header.js"></script>
 </body>
 </html>
