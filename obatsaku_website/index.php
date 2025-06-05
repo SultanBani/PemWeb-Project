@@ -291,6 +291,6 @@ include "db/koneksi.php";
     </main>
 
 
-<script src="assets/js/main.js"></script>
+<script src="assets/header.js"></script>
 </body>
 </html>
