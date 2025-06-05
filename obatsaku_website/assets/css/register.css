@@ -1,138 +1,51 @@
-/* Reset dasar */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+<?php
+session_start();
+include "db/koneksi.php";
 
-html, body {
-  height: 100%;
-  width: 100%;
-  overflow: hidden;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f5f0fa;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = htmlspecialchars(trim($_POST['username']));
+    $email = htmlspecialchars(trim($_POST['email']));
+    $nama_depan = htmlspecialchars(trim($_POST['nama_depan']));
+    $nama_belakang = htmlspecialchars(trim($_POST['nama_belakang']));
+    $no_hp = htmlspecialchars(trim($_POST['no_hp']));
+    $password = htmlspecialchars(trim($_POST['password']));
+    $tipe_pengguna = $_POST['tipe_pengguna'];
+    $status_akun = $_POST['status_akun'];
 
-.register-container {
-  background-color: #ffffff;
-  padding: 40px 30px;
-  border-radius: 20px;
-  box-shadow: 0 12px 30px rgba(108, 43, 157, 0.15);
-  width: 100%;
-  max-width: 720px;
-}
+    // Cek apakah username sudah ada
+    $cek_user = mysqli_query($conn, "SELECT * FROM pengguna WHERE username = '$username'");
+    if (mysqli_num_rows($cek_user) > 0) {
+        $error = "Username sudah digunakan!";
+    } else {
+        // Upload foto
+        $foto_profil = "";
+        if ($_FILES['foto_profil']['name'] != "") {
+            $foto_name = $_FILES['foto_profil']['name'];
+            $foto_tmp = $_FILES['foto_profil']['tmp_name'];
+            $foto_path = "uploads/" . basename($foto_name);
 
-.register-title {
-  text-align: center;
-  color: #580b94;
-  font-size: 26px;
-  font-weight: bold;
-  margin-bottom: 30px;
-}
+            if (move_uploaded_file($foto_tmp, $foto_path)) {
+                $foto_profil = $foto_path;
+            } else {
+                $error = "Gagal mengupload foto profil!";
+            }
+        }
 
-label {
-  display: block;
-  margin-bottom: 6px;
-  color: #4a3b70;
-  font-weight: 600;
-  font-size: 14px;
-}
+        // Jika tidak ada error, simpan data
+        if (!isset($error)) {
+            $query = "INSERT INTO pengguna 
+                (username, email, nama_depan, nama_belakang, no_hp, password, foto_profil, tipe_pengguna, status_akun)
+                VALUES 
+                ('$username', '$email', '$nama_depan', '$nama_belakang', '$no_hp', '$password', '$foto_profil', '$tipe_pengguna', '$status_akun')";
 
-.form-group {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  margin-bottom: 20px;
+            if (mysqli_query($conn, $query)) {
+                // Registrasi berhasil, bisa redirect atau beri pesan
+                header("Location: login.php?success=1");
+                exit;
+            } else {
+                $error = "Gagal menyimpan data ke database!";
+            }
+        }
+    }
 }
-
-.form-col {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-input {
-  width: 100%;
-  padding: 14px 16px;
-  border: 1px solid #cdb8e9;
-  border-radius: 12px;
-  font-size: 15px;
-  color: #4a3b70;
-  background-color: #fdfdff;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-
-.form-input:focus {
-  border-color: #6c2b9d;
-  box-shadow: 0 0 5px rgba(108, 43, 157, 0.3);
-  outline: none;
-}
-
-input[type="file"].form-input {
-  padding: 10px 14px;
-  background-color: #fafafa;
-  border: 1px dashed #cdb8e9;
-  font-size: 14px;
-}
-
-/* Tombol */
-.form-button {
-  background-color: #C5BAFF;
-  color: white;
-  border: none;
-  padding: 14px;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  cursor: pointer;
-  width: 100%;
-  transition: background-color 0.3s ease;
-  text-align: center;
-  display: inline-block;
-  margin-top: 10px;
-}
-
-.form-button:hover {
-  background-color: #580b94;
-}
-
-.form-footer {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 14px;
-}
-
-.form-footer a {
-  color: #C5BAFF;
-  text-decoration: none;
-}
-
-.form-footer a:hover {
-  color: #580b94;
-  text-decoration: underline;
-}
-
-/* Pesan error */
-.error-message {
-  background-color: #ffe5e5;
-  color: #d83737;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  text-align: center;
-  font-weight: bold;
-}
-
-/* Responsif */
-@media (max-width: 700px) {
-  .form-group {
-    grid-template-columns: 1fr;
-  }
-
-  .register-container {
-    padding: 30px 20px;
-  }
-}
+?>
