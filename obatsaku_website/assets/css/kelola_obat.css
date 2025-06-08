@@ -16,17 +16,6 @@
     --warna-disabled: #cccccc; /* Warna untuk tombol disabled */
 }
 
-/* Reset dan body */
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, var(--warna-bg) 0%, #d1c4e9 100%); /* Gradient lebih lembut */
-    margin: 0;
-    padding: 30px 15px; /* Padding body */
-    color: var(--warna-text);
-    min-height: 100vh;
-    box-sizing: border-box;
-}
-
 /* Container utama */
 .container {
     max-width: 1140px; /* Sedikit lebih lebar untuk mengakomodasi lebih banyak kartu */

@@ -16,30 +16,6 @@
     --warna-header-table-text: #455a64; /* Warna teks header tabel */
 }
 
-/* Gaya Body jika tidak di-override oleh kelas Tailwind di HTML */
-/* Kelas 'bg-gray-50' pada body di HTML akan lebih dominan, jadi ini sebagai fallback */
-body.data-pesanan-page { /* Tambahkan class ini ke body jika ingin gaya ini aktif */
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--warna-bg);
-    color: var(--warna-text);
-    line-height: 1.6;
-}
-
-/* Judul Halaman (jika tidak menggunakan kelas Tailwind) */
-/* Kelas 'text-3xl font-bold text-center mb-10 text-gray-700' pada h1 sudah cukup baik dari Tailwind */
-/* Jika ingin override:
-.data-pesanan-title {
-    text-align: center;
-    font-weight: 700;
-    font-size: 2rem;
-    margin-bottom: 30px;
-    color: var(--warna-primary);
-}
-*/
-
-/* Tombol Kembali ke Beranda */
-/* Di HTML Anda sudah menggunakan kelas Tailwind: "inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded transition duration-200" */
-/* Jika ingin menggunakan variabel dari kelola_obat.css: */
 .btn-beranda {
     display: inline-block;
     background-color: var(--warna-secondary); /* Menggunakan warna sekunder */
@@ -90,21 +66,15 @@ table.dataTable td {
     padding: 0.75rem 1rem; /* Sesuaikan padding jika perlu (kelas px-4 py-3 di HTML) */
 }
 table.dataTable tr:last-child td {
-    border-bottom: none !important; /* Hilangkan border bawah pada baris terakhir tbody */
+    border-bottom: none !important; 
 }
 
-/* Link di dalam tabel */
-/* Style inline Anda sudah menangani ini dengan baik:
-   table.dataTable tbody td a { color: #3b82f6; text-decoration: underline; }
-   table.dataTable tbody td a:hover { color: #2563eb; }
-*/
-/* Jika ingin menggunakan variabel warna: */
 table.dataTable tbody td a {
-    color: var(--warna-secondary); /* Menggunakan warna sekunder */
+    color: var(--warna-secondary); 
     text-decoration: underline;
 }
 table.dataTable tbody td a:hover {
-    color: #0056b3; /* Biru lebih gelap */
+    color: #0056b3; 
 }
 
 

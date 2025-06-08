@@ -1,8 +1,5 @@
 <?php include 'header.php';
 
-session_start();
-$_SESSION['username'] = 'admin'; // Dummy login
-
 include "db/koneksi.php";
 
 ?>
@@ -184,5 +181,3 @@ include "db/koneksi.php";
 <script src="assets/header.js"></script>
 </body>
 </html>
-
-

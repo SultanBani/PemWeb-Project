@@ -1,3 +1,49 @@
+/*=============== LAYOUT UTAMA (STICKY FOOTER) ===============*/
+html {
+  height: 100%;
+}
+
+body {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/*=============== PENGATURAN LAYOUT MAIN ===============*/
+main {
+  flex-grow: 1; /* Ini untuk sticky footer, JANGAN DIHAPUS */
+
+  /* KODE BARU: Memberi jarak dari header yang fixed */
+  /* Padding atas untuk layar kecil/mobile */
+  padding-top: 4.5rem; 
+}
+
+/* Penyesuaian padding untuk layar besar (desktop) */
+@media screen and (min-width: 1023px) {
+  main {
+    /* Header di desktop lebih tinggi, jadi paddingnya lebih besar */
+    padding-top: 6.5rem; 
+  }
+}
+
+/*=============== STYLE UNTUK LINK AKTIF ===============*/
+.nav__link.active-link {
+  color: var(--title-color) !important; /* Paksa warna agar lebih gelap dan terlihat */
+  font-weight: var(--font-semi-bold); /* Membuatnya sedikit tebal */
+  position: relative;
+}
+
+/* Efek garis bawah untuk link yang aktif */
+.nav__link.active-link::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Jarak garis bawah dari teks */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%; /* Lebar garis bawah */
+  height: 2px;
+  background-color: var(--title-color); /* Warna garis bawah */
+}
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600&display=swap");
 
@@ -205,6 +251,7 @@ img {
 }
 
 .nav__link {
+  font-family: var(--body-font); /* <-- TAMBAHKAN BARIS INI */
   color: var(--title-color);
   font-weight: var(--font-semi-bold);
   transition: color .4s;

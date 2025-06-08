@@ -1,5 +1,5 @@
-<?php
-include "../db/koneksi.php"; // Pastikan path ini benar
+<?php include 'header.php';
+include "db/koneksi.php"; // Pastikan path ini benar
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
@@ -241,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_cart']) && iss
 
     <div class="navigasi-beranda">
         <a href="kelola_obat.php" class="back-link">&larr; Lanjut Belanja</a>
-        <a href="../index.php" class="back-link">Kembali ke Beranda &rarr;</a>
+        <a href="index.php" class="back-link">Kembali ke Beranda &rarr;</a>
     </div>
 </div>
 
@@ -341,5 +341,9 @@ async function prosesDanCetak() {
     }
 }
 </script>
+<script src="assets/header.js"></script>
 </body>
 </html>
+<?php 
+include 'footer.php'; 
+?>
