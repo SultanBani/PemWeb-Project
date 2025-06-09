@@ -1,5 +1,9 @@
+html, body {
+  overflow: hidden;
+}
+
 body {
-  background-color: #ffffff;
+  background-color: #f5f0fa; 
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
@@ -10,7 +14,7 @@ body {
 }
 
 .login-container {
-  background-color: #f5f0fa;
+  background-color: #ffffff; 
   padding: 40px;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(128, 0, 128, 0.2);
@@ -19,7 +23,7 @@ body {
 }
 
 .login-title {
-  color: #6a0dad;
+  color: #580b94;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -34,7 +38,7 @@ body {
 }
 
 .form-button {
-  background-color: #6a0dad;
+  background-color: #C5BAFF;
   color: white;
   padding: 12px;
   border: none;
@@ -55,11 +59,12 @@ body {
 }
 
 .form-footer a {
-  color: #6a0dad;
+  color: #C5BAFF;
   text-decoration: none;
 }
 
 .form-footer a:hover {
+  color: #580b94;
   text-decoration: underline;
 }
 

@@ -1,0 +1,166 @@
+/*======================================================*/
+/* File: assets/css/footer.css                 */
+/* (Versi Final untuk Sticky Footer)               */
+/*======================================================*/
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Footer Utama */
+footer {
+  /* Tidak ada lagi position: fixed. Footer akan menjadi bagian dari alur normal halaman. */
+  /* Properti "margin-top: auto" akan ditambahkan di header.css untuk mendorongnya ke bawah */
+
+  /* Gaya desain yang sudah ada (tema ungu) */
+  padding: 50px 0;
+  background-color: #4a3f7a; 
+  color: #e0e0e0; 
+}
+
+.footer-box {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 30px;
+  row-gap: 50px;
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-box h2 {
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-weight: 600;
+  border-bottom: 2px solid #C5BAFF;
+  padding-bottom: 10px;
+  display: inline-block;
+}
+
+.footer-box .box p {
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.footer-box .box:nth-child(1) {
+  flex-basis: 400px;
+}
+
+/* Ikon Social Media */
+.footer-box .social {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-box .social a {
+  font-size: 24px;
+  text-decoration: none;
+  color: #C5BAFF;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.footer-box .social a:hover {
+  color: #ffffff;
+  transform: translateY(-3px);
+}
+
+/* Menu Link */
+.footer-box .box:nth-child(2) {
+  flex-basis: 150px;
+}
+
+.footer-box .box:nth-child(2) a {
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+    font-size: 14px;
+    color: #e0e0e0;
+    transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer-box .box:nth-child(2) a:hover {
+  color: #ffffff;
+  padding-left: 5px;
+}
+
+/* Kontak */
+.footer-box .box:nth-child(3) {
+  flex-basis: 300px;
+}
+
+.footer-box .box:nth-child(3) p {
+  margin-bottom: 15px;
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.footer-box .box:nth-child(3) i {
+  color: #C5BAFF;
+  margin-top: 5px;
+}
+
+
+/* Copyright */
+.copyright {
+  margin-top: 50px;
+  padding-top: 25px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.copyright p {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.copyright p span {
+  font-weight: bold;
+  color: #ffffff;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  footer {
+    padding: 30px 0;
+  }
+
+  .footer-box {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-box .box {
+    flex-basis: 100% !important;
+    width: 100%;
+  }
+
+  .footer-box .social {
+    justify-content: center;
+  }
+
+  .footer-box .box:nth-child(3) p {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-box h2 {
+    display: inline-block;
+  }
+
+  .copyright {
+    margin-top: 30px;
+    padding-top: 20px;
+  }
+}

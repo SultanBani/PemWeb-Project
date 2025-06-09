@@ -1,0 +1,195 @@
+/* File: ../assets/css/data_pesanan.css */
+
+/* Mengimpor atau mendefinisikan ulang variabel warna dari kelola_obat.css */
+:root {
+    --warna-bg: #e8f9ff; /* Latar belakang utama halaman (digunakan untuk body jika tidak di-override Tailwind) */
+    --warna-card-bg: #ffffff; /* Latar belakang container tabel */
+    --warna-primary: #7c3aed; /* Warna utama (ungu) */
+    --warna-primary-hover: #5a22c8; /* Warna utama saat hover */
+    --warna-secondary: #007bff; /* Warna sekunder (biru) */
+    --warna-text: #333333; /* Warna teks utama */
+    --warna-text-muted: #555555; /* Warna teks yang lebih lembut */
+    --warna-border: #e0e0e0; /* Warna border */
+    --warna-success: #28a745;
+    --warna-error: #dc3545;
+    --warna-header-table-bg: #f0f3f5; /* Warna baru untuk header tabel, lebih netral */
+    --warna-header-table-text: #455a64; /* Warna teks header tabel */
+}
+
+.btn-beranda {
+    display: inline-block;
+    background-color: var(--warna-secondary); /* Menggunakan warna sekunder */
+    color: white;
+    padding: 0.65rem 1.25rem;
+    border-radius: 0.375rem; /* rounded-md */
+    font-weight: 600; /* font-semibold */
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-beranda:hover {
+    background-color: #0056b3; /* Biru lebih gelap untuk hover */
+    transform: translateY(-1px);
+}
+
+/* Styling untuk container tabel utama */
+/* Di HTML Anda: class="overflow-x-auto bg-white shadow-md rounded-lg p-6" */
+/* Kita bisa menambahkan atau menyesuaikan di sini jika perlu */
+.data-table-container {
+    background-color: var(--warna-card-bg); /* Sesuai referensi */
+    border-radius: 12px; /* Sedikit lebih besar dari Tailwind 'rounded-lg' (0.5rem) */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08); /* Bayangan lebih halus */
+    /* Padding sudah diatur oleh p-6 Tailwind */
+}
+
+/* Kustomisasi DataTables agar serasi dengan tema */
+.dataTables_wrapper {
+    font-size: 0.9rem; /* Ukuran font tabel sedikit lebih kecil */
+}
+
+/* Header Tabel */
+/* Di HTML Anda: class="bg-gray-200 text-gray-600 uppercase" */
+/* Kita override untuk tema kelola_obat.css */
+table.dataTable thead th {
+    background-color: var(--warna-header-table-bg) !important; /* Override Tailwind */
+    color: var(--warna-header-table-text) !important; /* Override Tailwind */
+    border-bottom: 2px solid var(--warna-border) !important;
+    font-weight: 600; /* font-semibold */
+    text-transform: uppercase; /* Sudah ada dari Tailwind */
+    /* padding: 10px 18px !important; sudah ada di style inline Anda */
+    /* text-align: left !important; sudah ada di style inline Anda */
+}
+
+/* Border sel tabel */
+table.dataTable td {
+    border-bottom: 1px solid var(--warna-border) !important; /* Override Tailwind 'border-gray-300' */
+    padding: 0.75rem 1rem; /* Sesuaikan padding jika perlu (kelas px-4 py-3 di HTML) */
+}
+table.dataTable tr:last-child td {
+    border-bottom: none !important; 
+}
+
+table.dataTable tbody td a {
+    color: var(--warna-secondary); 
+    text-decoration: underline;
+}
+table.dataTable tbody td a:hover {
+    color: #0056b3; 
+}
+
+
+/* Tombol Aksi (Hapus) */
+/* Di HTML Anda: class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-700 transition-colors duration-150 text-xs" */
+/* Jika ingin menggunakan variabel warna: */
+.btn-aksi-hapus {
+    background-color: var(--warna-error);
+    color: white;
+    padding: 0.25rem 0.75rem; /* px-3 py-1 */
+    border-radius: 0.25rem; /* rounded */
+    font-size: 0.75rem; /* text-xs */
+    font-weight: 500; /* medium, Tailwind tidak punya kelas eksplisit untuk ini di button */
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.btn-aksi-hapus:hover {
+    background-color: #c82333; /* Warna error lebih gelap */
+    transform: translateY(-1px);
+}
+
+
+/* Input Pencarian DataTables */
+.dataTables_wrapper .dataTables_filter input[type="search"] {
+    padding: 0.5em 0.75em;
+    border-radius: 20px; /* Sesuai .form-search di kelola_obat.css */
+    border: 1px solid var(--warna-border);
+    margin-left: 0.5em;
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    outline: none;
+}
+.dataTables_wrapper .dataTables_filter input[type="search"]:focus {
+    border-color: var(--warna-primary);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2); /* Sesuai kelola_obat.css */
+}
+
+/* Dropdown jumlah entri (Length) */
+.dataTables_wrapper .dataTables_length select {
+    padding: 0.5em 2em 0.5em 0.75em;
+    border-radius: 20px; /* Sesuai .form-search di kelola_obat.css */
+    border: 1px solid var(--warna-border);
+    margin-right: 0.5em;
+    font-size: 0.9rem;
+    background-position: right 0.75rem center;
+    background-size: 0.9em 0.9em;
+    appearance: none; /* Untuk custom arrow jika ada */
+}
+.dataTables_wrapper .dataTables_length select:focus {
+    border-color: var(--warna-primary);
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.2); /* Sesuai kelola_obat.css */
+    outline: none;
+}
+
+/* Informasi Entri DataTables */
+.dataTables_wrapper .dataTables_info {
+    padding-top: 0.75em; /* Agar sejajar dengan pagination */
+    font-size: 0.85rem;
+    color: var(--warna-text-muted);
+}
+
+/* Tombol Paginasi DataTables */
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+    padding: 0.4em 0.9em;
+    border-radius: 20px; /* Sesuai tombol di kelola_obat.css */
+    margin: 0 3px;
+    border: 1px solid var(--warna-border);
+    background-color: var(--warna-card-bg);
+    color: var(--warna-text);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    font-weight: 500;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+    background-color: #f0e9ff; /* Background ungu sangat muda saat hover */
+    border-color: var(--warna-primary);
+    color: var(--warna-primary);
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current,
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+    background-color: var(--warna-primary) !important; /* Sesuai kelola_obat.css */
+    color: white !important;
+    border-color: var(--warna-primary) !important;
+    font-weight: 600;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
+    background-color: #f8f9fa !important;
+    color: var(--warna-disabled) !important;
+    border-color: #e9ecef !important;
+    cursor: not-allowed;
+}
+
+/* Style untuk pesan notifikasi (jika Anda menambahkannya dari PHP) */
+.notif-pesan-data-pesanan {
+    padding: 1rem;
+    margin-bottom: 1.5rem; /* mb-6 Tailwind */
+    border-left-width: 4px;
+    border-radius: 0.25rem; /* rounded */
+    font-size: 0.9rem;
+}
+.notif-pesan-data-pesanan.success {
+    background-color: #d1fae5; /* Tailwind green-100 */
+    border-color: #10b981;  /* Tailwind green-500 */
+    color: #065f46;       /* Tailwind green-700 */
+}
+.notif-pesan-data-pesanan.error {
+    background-color: #fee2e2; /* Tailwind red-100 */
+    border-color: #ef4444;  /* Tailwind red-500 */
+    color: #b91c1c;       /* Tailwind red-700 */
+}
+.notif-pesan-data-pesanan.warning {
+    background-color: #fef3c7; /* Tailwind yellow-100 */
+    border-color: #f59e0b;  /* Tailwind yellow-500 */
+    color: #b45309;       /* Tailwind yellow-700 */
+}
+.notif-pesan-data-pesanan p { margin: 0; }
+.notif-pesan-data-pesanan .font-bold { font-weight: 600; margin-bottom: 0.25rem; }
