@@ -115,7 +115,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_cart']) && iss
     <title>Pembayaran - Obatsaku</title>
     <link rel="stylesheet" href="../assets/css/pembayaran.css"> <!-- Pastikan path CSS benar -->
     <style>
-        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f7f6; color: #333; }
+        body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
         .container { max-width: 800px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
         .header-pembayaran h2 { text-align: center; color: #333; margin-bottom: 20px; }
         .notif-pesan { padding: 12px 15px; margin-bottom: 20px; border-radius: 5px; text-align: center; font-size: 0.95em; border: 1px solid transparent; }
