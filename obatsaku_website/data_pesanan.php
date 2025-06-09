@@ -32,9 +32,16 @@ include "db/koneksi.php"; // Pastikan path ini benar dan $conn terdefinisi di fi
         padding: 10px 18px !important;
         text-align: left !important;
     }
+      #tabelPesanan th, #tabelPesanan td {
+      text-align: center !important;
+    }
+      main {
+      padding-top: 55px; 
+    }
   </style>
 </head>
-<body class="px-8 py-10 bg-gray-50">
+<body>
+  <main>
 
   <h1 class="text-3xl font-bold text-center mb-10 text-gray-700">DATA PESANAN</h1>
 
@@ -125,7 +132,7 @@ include "db/koneksi.php"; // Pastikan path ini benar dan $conn terdefinisi di fi
     }
   </script>
   <script src="assets/js/header.js"></script>
-
+  </main>
 </body>
 </html>
 <?php 
