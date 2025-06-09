@@ -1,12 +1,4 @@
-/* Menimpa (override) style dari file lain agar halaman ini bisa full-width */
-html, body {
-    max-width: 100vw !important; /* Paksa lebar maksimal adalah lebar layar */
-    overflow-x: hidden; /* Mencegah scroll horizontal jika ada sedikit overflow */
-}
-
-/* Memberi jarak dari header yang posisinya fixed */
 body {
-    padding-top: 3.5rem; /* Sesuaikan dengan tinggi header (var(--header-height)) */
     margin: 0;
 }
 
