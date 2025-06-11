@@ -1,39 +1,19 @@
-<?php include 'header.php';
+<?php 
+include 'header.php';
 
 include "db/koneksi.php";
 
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>ObatSaku</title>
-    <link rel="stylesheet" href="assets/css/header.css">
+    <!-- <title>ObatSaku</title> -->
+    <!-- <link rel="stylesheet" href="assets/css/header.css">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/layanan.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css">
-    <script defer src="assets/style.js"></script>
-</head>
-<body>
+    <script defer src="assets/style.js"></script>  -->
 
-
-    <!-- <div class="navbar">
-        <h2>ObatSaku - Dashboard</h2>
-        <ul>
-            <li><a href="pages/dashboard.php">Beranda</a></li>
-            <li><a href="pages/kelola_obat.php">Kelola Obat</a></li>
-            <li><a href="pages/data_pesanan.php">Data Pesanan</a></li>
-            <li><a href="pages/pembayaran.php">Pembayaran</a></li>
-            <li><a href="pages/daftar_pengguna.php">Daftar Pengguna</a></li>
-            <li><a href="pages/pesan_pengguna.php">Hubungi Kami</a></li>
-            <li><a href="logout.php">Logout</a></li>
-        </ul>
-    </div> -->
-
-    
-   </body>
     <!-- Main Konten -->
     <main>
         <!-- Tentang Kami Start -->
@@ -178,6 +158,8 @@ include "db/koneksi.php";
               <img src="assets/img/Paracetamol.png">
             </div>
     </main>
+
 <script src="assets/header.js"></script>
-</body>
-</html>
+<?php 
+include 'footer.php'; 
+?>

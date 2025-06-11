@@ -10,16 +10,14 @@ $_SESSION['username'] = 'admin'; // Dummy
 include "db/koneksi.php"; // Pastikan path ini benar dan $conn terdefinisi di file koneksi.php
 ?>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
+
   <meta charset="UTF-8">
   <title>Data Pesanan</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
-  <link rel="stylesheet" href="assets/css/data_pesanan.css">
+  <link rel="stylesheet" href="assets/css/data_pesanan.css"> -->
   <style>
     table.dataTable tbody td a {
         color: #3b82f6;
@@ -39,8 +37,7 @@ include "db/koneksi.php"; // Pastikan path ini benar dan $conn terdefinisi di fi
       padding-top: 55px; 
     }
   </style>
-</head>
-<body>
+
   <main>
 
   <h1 class="text-3xl font-bold text-center mb-10 text-gray-700">DATA PESANAN</h1>

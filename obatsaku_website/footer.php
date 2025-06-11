@@ -1,3 +1,5 @@
+
+</head>
 </main>
     <footer>
         <div class="footer-box">

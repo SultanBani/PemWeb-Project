@@ -208,6 +208,8 @@ img {
   font-weight: var(--font-semi-bold);
   transition: color .4s;
   text-decoration: none;
+  padding-inline: 1.5rem;
+  font-size: 2rem; 
 }
 
 .nav__actions {
