@@ -17,7 +17,7 @@ include "db/koneksi.php";
     <!-- Main Konten -->
     <main>
         <!-- Tentang Kami Start -->
-        <div class="container-xxl py-5">
+      <div class="container-xxl py-5 konten-utama-beranda">
         <div class="container">
             <div class="row g-5 align-items-center">
             <div class="col-lg-6">
