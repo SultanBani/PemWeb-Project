@@ -102,7 +102,7 @@ include "db/koneksi.php";
 
         <!-- Galeri -->
          <!-- Gambar 1 -->
-         <h1 style="text-align: center;">Obat</h1>
+        <h1 class="judul-galeri" style="text-align: center;">Obat</h1>
           <div class="containerBerita">
             <div class="postBerita">
               <img src="assets/img/amoxicillin.jpg">

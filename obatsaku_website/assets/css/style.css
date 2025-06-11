@@ -542,9 +542,23 @@
     color: var(--primary);
 }
 
+main {
+  padding-top: 3.5rem; 
+}
+
 @media screen and (min-width: 1023px) {
   main {
-    padding-top: 2rem;
+    padding-top: 4.5rem;
   }
 }
+
+h2.fw-bold {
+  font-size: 2.2rem; 
+}
+
+.judul-galeri {
+  font-size: 2.2rem;
+  font-weight: 700;
+}
+
 
