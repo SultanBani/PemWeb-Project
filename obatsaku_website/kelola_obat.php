@@ -64,8 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat_to_cart'])) {
         }
     }
     // Redirect untuk mencegah resubmit form saat refresh
-    header("Location: kelola_obat.php" . ($keyword ? "?search=" . urlencode($keyword) : ""));
-    exit;
+    // header("Location: kelola_obat.php" . ($keyword ? "?search=" . urlencode($keyword) : ""));
+    // exit;
 }
 // --------------------------------------------------------------------------
 ?>

@@ -102,8 +102,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_cart']) && iss
         }
     }
 
-    header("Location: pembayaran.php");
-    exit;
+    // header("Location: pembayaran.php");
+    // exit;
 }
 ?>
 
