@@ -1,17 +1,19 @@
 <?php 
-// Sertakan header yang berisi tag <html>, <head>, dan navigasi
 include 'header.php';
 
-// Memulai sesi jika belum aktif
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-$_SESSION['username'] = 'admin'; // Dummy login
+$_SESSION['username'] = 'admin';
 
-// Sertakan koneksi database
 include "db/koneksi.php";
 
+// Cek koneksi database
+if ($conn->connect_error) {
+    die("Koneksi ke database gagal: " . $conn->connect_error);
+}
 ?>
+
 <link rel="stylesheet" href="assets/css/hubungikami.css" />
 
 <div class="hubungi-kami-container">
@@ -27,23 +29,41 @@ include "db/koneksi.php";
         <h2>Hubungi Kami</h2>
 
         <?php
-        // Logika untuk menampilkan pesan setelah form disubmit
         if ($_SERVER["REQUEST_METHOD"] === "POST" && isset($_POST["nama"])) {
-            $nama       = htmlspecialchars($_POST["nama"]);
-            $email      = htmlspecialchars($_POST["email"]);
-            $perusahaan = htmlspecialchars($_POST["perusahaan"]);
-            $telepon    = htmlspecialchars($_POST["telepon"]);
-            $pesan      = htmlspecialchars($_POST["pesan"]);
+            $nama       = htmlspecialchars(trim($_POST["nama"]));
+            $emailRaw   = trim($_POST["email"]);
+            $perusahaan = htmlspecialchars(trim($_POST["perusahaan"]));
+            $teleponRaw = trim($_POST["telepon"]);
+            $pesan      = htmlspecialchars(trim($_POST["pesan"]));
 
-            echo "<div class='success-message'>";
-            echo "<p><strong>Terima kasih, $nama!</strong> Pesan Anda telah berhasil dikirim.</p>";
-            echo "<ul>";
-            echo "<li><strong>Email:</strong> $email</li>";
-            echo "<li><strong>Perusahaan:</strong> $perusahaan</li>";
-            echo "<li><strong>Telepon:</strong> $telepon</li>";
-            echo "<li><strong>Pesan:</strong> $pesan</li>";
-            echo "</ul>";
-            echo "</div>";
+            // Validasi
+            $email   = filter_var($emailRaw, FILTER_VALIDATE_EMAIL);
+            $telepon = preg_replace('/[^0-9]/', '', $teleponRaw); // hanya angka
+
+            if (!$email) {
+                echo "<div class='error-message'>Format email tidak valid.</div>";
+            } elseif (empty($nama) || empty($pesan)) {
+                echo "<div class='error-message'>Nama dan pesan wajib diisi.</div>";
+            } else {
+                $stmt = $conn->prepare("INSERT INTO kontak (nama, email, perusahaan, telepon, pesan) VALUES (?, ?, ?, ?, ?)");
+                $stmt->bind_param("sssss", $nama, $email, $perusahaan, $telepon, $pesan);
+
+                if ($stmt->execute()) {
+                    echo "<div class='success-message'>";
+                    echo "<p><strong>Terima kasih, $nama!</strong> Pesan Anda telah berhasil dikirim.</p>";
+                    echo "<ul>";
+                    echo "<li><strong>Email:</strong> $email</li>";
+                    echo "<li><strong>Perusahaan:</strong> $perusahaan</li>";
+                    echo "<li><strong>Telepon:</strong> $telepon</li>";
+                    echo "<li><strong>Pesan:</strong> $pesan</li>";
+                    echo "</ul>";
+                    echo "</div>";
+                } else {
+                    echo "<div class='error-message'>Gagal mengirim pesan: " . $stmt->error . "</div>";
+                }
+
+                $stmt->close();
+            }
         }
         ?>
 
@@ -70,6 +90,4 @@ include "db/koneksi.php";
 
 <script src="assets/js/header.js"></script>
 
-<?php 
-include 'footer.php'; 
-?>
+<?php include 'footer.php'; ?>

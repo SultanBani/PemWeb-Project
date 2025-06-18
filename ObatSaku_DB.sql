@@ -63,20 +63,6 @@ CREATE TABLE pembayaran (
     FOREIGN KEY (id_pesanan) REFERENCES pesanan(id_pesanan)
 );
 
--- Tabel: pesan
-CREATE TABLE pesan (
-    id_pesan INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(100),
-    nama VARCHAR(100),
-    isi_pesan TEXT NOT NULL,
-    no_kontak VARCHAR(15),
-    email VARCHAR(255),
-    url_upload VARCHAR(255),
-    tanggapan TEXT,
-    tanggal_pesan TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (username) REFERENCES pengguna(username)
-);
-
 CREATE TABLE keranjang (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nama_produk VARCHAR(255),
@@ -120,3 +106,12 @@ INSERT INTO pesan (username, nama, isi_pesan, no_kontak, email, url_upload, tang
 ('user01', 'Budi Santoso', 'Apakah Paracetamol tersedia?', '08234567890', 'budi@gmail.com', NULL, 'Ya, tersedia.'),
 ('user01', 'Budi Santoso', 'Bagaimana aturan pakai Amoxicillin?', '08234567890', 'budi@gmail.com', NULL, 'Dikonsumsi 3 kali sehari.');
 
+CREATE TABLE kontak (
+    id_kontak INT AUTO_INCREMENT PRIMARY KEY,
+    nama VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    perusahaan VARCHAR(100),
+    telepon VARCHAR(20),
+    pesan TEXT NOT NULL,
+    tanggal_kirim TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
