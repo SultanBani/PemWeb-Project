@@ -4,7 +4,6 @@ include 'header.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-$_SESSION['username'] = 'admin';
 
 include "db/koneksi.php";
 
