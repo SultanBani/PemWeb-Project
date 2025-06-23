@@ -1,10 +1,6 @@
 <?php 
-// 1. Panggil "roti atas" (header, koneksi, session, dll)
 include 'header.php';
 
-// Logika PHP spesifik untuk halaman ini (pencarian dan tambah ke keranjang)
-// Logika ini dipindahkan ke sini dari bagian atas file lama.
-// --------------------------------------------------------------------------
 $keyword = '';
 if (isset($_GET['search']) && !empty(trim($_GET['search']))) {
     if (isset($conn) && $conn) {
@@ -19,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat_to_cart'])) {
         $id_obat_from_form = intval($_POST['id_obat_to_cart']);
 
         if ($id_obat_from_form > 0) {
-            $sql_get_obat = "SELECT id_obat, nama_obat, harga, stok FROM obat WHERE id_obat = ?";
+            $sql_get_obat = "SELECT id_obat, nama_obat, harga, stok, jenis_obat FROM obat WHERE id_obat = ?";
             $stmt_get_obat = $conn->prepare($sql_get_obat);
             $stmt_get_obat->bind_param("i", $id_obat_from_form);
             $stmt_get_obat->execute();
@@ -32,6 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat_to_cart'])) {
                     $id_obat_db = intval($obat['id_obat']);
                     $nama_produk_db = $obat['nama_obat'];
                     $harga_db = floatval($obat['harga']);
+                    $jenis_obat = strtolower(trim($obat['jenis_obat']));
+                    $isResep = ($jenis_obat === 'resep');
 
                     $sql_cek_keranjang = "SELECT id, jumlah FROM keranjang WHERE id_obat = ?";
                     $stmt_cek = $conn->prepare($sql_cek_keranjang);
@@ -48,14 +46,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat_to_cart'])) {
                             $stmt_update = $conn->prepare($sql_update);
                             $stmt_update->bind_param("ii", $jumlah_baru, $id_obat_db);
                             $stmt_update->execute();
-                            $_SESSION['notif'] = "Jumlah <strong>" . htmlspecialchars($obat['nama_obat']) . "</strong> di keranjang ditambah!";
+                            $_SESSION['notif'] = "Jumlah <strong>" . htmlspecialchars($obat['nama_obat']) . "</strong> di keranjang ditambah!" .
+                                ($isResep ? "<br><em style='color:red;'>* Obat ini memerlukan resep dokter saat verifikasi pembayaran di WhatsApp.</em>" : "");
                         }
                     } else {
                         $sql_insert = "INSERT INTO keranjang (id_obat, nama_produk, harga, jumlah) VALUES (?, ?, ?, 1)";
                         $stmt_insert = $conn->prepare($sql_insert);
                         $stmt_insert->bind_param("isd", $id_obat_db, $nama_produk_db, $harga_db);
                         $stmt_insert->execute();
-                        $_SESSION['notif'] = "<strong>" . htmlspecialchars($obat['nama_obat']) . "</strong> berhasil ditambahkan ke keranjang!";
+                        $_SESSION['notif'] = "<strong>" . htmlspecialchars($obat['nama_obat']) . "</strong> berhasil ditambahkan ke keranjang!" .
+                            ($isResep ? "<br><em style='color:red;'>* Obat ini memerlukan resep dokter saat verifikasi pembayaran di WhatsApp.</em>" : "");
                     }
                 }
             } else {
@@ -63,11 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat_to_cart'])) {
             }
         }
     }
-    // Redirect untuk mencegah resubmit form saat refresh
-    // header("Location: kelola_obat.php" . ($keyword ? "?search=" . urlencode($keyword) : ""));
-    // exit;
 }
-// --------------------------------------------------------------------------
 ?>
 
 <link rel="stylesheet" href="assets/css/kelola_obat.css" />
@@ -152,10 +148,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id_obat_to_cart'])) {
 </div>
 
 <script>
-// Script untuk notifikasi popup agar hilang otomatis
 const notif = document.getElementById('notif-popup');
 if (notif) {
-    // Hilang setelah 3.5 detik (animasi keluar 0.5s + 3s tunggu)
     setTimeout(() => {
         if(notif) notif.style.display = 'none';
     }, 3500);

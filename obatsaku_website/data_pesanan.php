@@ -4,16 +4,13 @@ include 'header.php';
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-$_SESSION['username'] = 'admin';
 
 include "db/koneksi.php";
 
-// Proses hapus pesanan jika ada parameter GET id_hapus
 $pesan = '';
 if (isset($_GET['id_hapus'])) {
     $id = intval($_GET['id_hapus']);
 
-    // Hapus pembayaran terlebih dahulu (jika ada) agar FK tidak error
     $conn->query("DELETE FROM pembayaran WHERE id_pesanan = $id");
 
     $hapusSql = "DELETE FROM pesanan WHERE id_pesanan = $id";
@@ -68,7 +65,6 @@ if (isset($_GET['id_hapus'])) {
                 <th>Status Pesanan</th>
                 <th>Tipe Pesanan</th>
                 <th>Jumlah</th>
-                <th>Nama Penerima</th>
                 <th>Total Harga</th>
                 <th>Tanggal Pesanan</th>
                 <th>Aksi</th>
@@ -87,7 +83,6 @@ if (isset($_GET['id_hapus'])) {
                     echo "<td class='px-4 py-3 border-b border-gray-300'>" . htmlspecialchars($row["status_pesanan"]) . "</td>";
                     echo "<td class='px-4 py-3 border-b border-gray-300'>" . htmlspecialchars($row["tipe_pesanan"]) . "</td>";
                     echo "<td class='px-4 py-3 border-b border-gray-300 text-center'>" . htmlspecialchars($row["jumlah"]) . "</td>";
-                    echo "<td class='px-4 py-3 border-b border-gray-300'>" . htmlspecialchars($row["nama_penerima"]) . "</td>";
                     echo "<td class='px-4 py-3 border-b border-gray-300 text-right'>" . number_format($row["total_harga"], 2, ',', '.') . "</td>";
                     echo "<td class='px-4 py-3 border-b border-gray-300'>" . date("d-m-Y H:i:s", strtotime($row["tanggal_pesanan"])) . "</td>";
                     echo "<td class='px-4 py-3 border-b border-gray-300 text-center'>";
@@ -138,7 +133,7 @@ if (isset($_GET['id_hapus'])) {
         if (popup) popup.style.display = 'none';
     }, 4000);
 </script>
-<script src="assets/js/header.js"></script>
+<script src="assets/header.js"></script>
 </main>
 </body>
 </html>

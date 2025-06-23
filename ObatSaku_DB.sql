@@ -87,24 +87,19 @@ ALTER TABLE keranjang ADD CONSTRAINT fk_keranjang_obat FOREIGN KEY (id_obat) REF
 -- Ubah tipe data harga jika masih INT
 ALTER TABLE keranjang MODIFY COLUMN harga DECIMAL(10,2);
 DELETE FROM keranjang;
-INSERT INTO keranjang (id_obat, nama_produk, harga, jumlah) VALUES
-(1, 'Paracetamol', 5000.00, 2),  
-(3, 'Vitamin C', 3000.00, 1); 
+ALTER TABLE keranjang ADD COLUMN username VARCHAR(100) NOT NULL DEFAULT 'guest';
+
 -- Data Dummy untuk tabel obat
 INSERT INTO obat (nama_obat, jenis_obat, deskripsi, indikasi, dosis, efek_samping, harga, stok, gambar, tanggal_kedaluwarsa) VALUES
-('Paracetamol', 'Tablet', 'Obat untuk menurunkan demam dan meredakan nyeri.', 'Demam, sakit kepala', '1 tablet, 3 kali sehari', 'Mual, ruam kulit', 5000.00, 100, 'paracetamol.jpg', '2025-12-31'),
-('Amoxicillin', 'Kapsul', 'Antibiotik untuk mengatasi infeksi bakteri.', 'Infeksi saluran pernapasan', '1 kapsul, 3 kali sehari selama 7 hari', 'Diare, mual', 10000.00, 50, 'amoxicillin.jpg', '2025-10-01'),
-('Vitamin C', 'Tablet', 'Vitamin untuk meningkatkan daya tahan tubuh.', 'Kekurangan vitamin C', '1 tablet sehari', 'Gangguan lambung (jika dosis tinggi)', 3000.00, 80, 'vitaminc.jpg', '2026-01-15');
+('Paracetamol', 'Umum', 'Obat untuk menurunkan demam dan meredakan nyeri.', 'Demam, sakit kepala', '1 tablet, 3 kali sehari', 'Mual, ruam kulit', 5000.00, 100, 'paracetamol.jpg', '2025-12-31'),
+('Amoxicillin', 'Umum', 'Antibiotik untuk mengatasi infeksi bakteri.', 'Infeksi saluran pernapasan', '1 kapsul, 3 kali sehari selama 7 hari', 'Diare, mual', 10000.00, 50, 'amoxicillin.jpg', '2025-10-01'),
+('Vitamin C', 'Umum', 'Vitamin untuk meningkatkan daya tahan tubuh.', 'Kekurangan vitamin C', '1 tablet sehari', 'Gangguan lambung (jika dosis tinggi)', 3000.00, 80, 'vitaminc.jpg', '2026-01-15'),
+('Captopril', 'Resep', 'Obat antihipertensi untuk menurunkan tekanan darah.', 'Hipertensi, gagal jantung', '25 mg, 2 kali sehari', 'Batuk kering, pusing', 8000.00, 40, 'captopril.jpg', '2025-11-20');
 
 -- Data Dummy untuk tabel pengguna
 INSERT INTO pengguna (username, nama_depan, nama_belakang, email, no_hp, password, foto_profil, status_akun, tipe_pengguna) VALUES
 ('admin', 'Sultan', 'Bani', 'admin@obatsaku.com', '08123456789', 'admin123', 'admin.jpg', 'Aktif', 'Admin'),
 ('user01', 'Budi', 'Santoso', 'budi@gmail.com', '08234567890', 'user123', 'budi.jpg', 'Aktif', 'Pengguna');
-
--- Data Dummy untuk tabel pesan
-INSERT INTO pesan (username, nama, isi_pesan, no_kontak, email, url_upload, tanggapan) VALUES
-('user01', 'Budi Santoso', 'Apakah Paracetamol tersedia?', '08234567890', 'budi@gmail.com', NULL, 'Ya, tersedia.'),
-('user01', 'Budi Santoso', 'Bagaimana aturan pakai Amoxicillin?', '08234567890', 'budi@gmail.com', NULL, 'Dikonsumsi 3 kali sehari.');
 
 CREATE TABLE kontak (
     id_kontak INT AUTO_INCREMENT PRIMARY KEY,

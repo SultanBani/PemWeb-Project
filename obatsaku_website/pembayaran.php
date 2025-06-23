@@ -1,25 +1,21 @@
 <?php include 'header.php';
-include "db/koneksi.php"; // Pastikan path ini benar
+include "db/koneksi.php"; 
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-// Pastikan $conn ada dan valid setelah include
 if (!isset($conn) || !$conn) {
-    // Ini adalah error kritis, mungkin redirect ke halaman error atau tampilkan pesan
     die("KRITIS: Koneksi database tidak berhasil dimuat. Periksa file koneksi.php.");
 }
 
 $username_pengguna = isset($_SESSION['username']) ? mysqli_real_escape_string($conn, $_SESSION['username']) : 'guest';
 
-// Logika untuk menambah/mengurangi jumlah item di keranjang (ACTION HANDLER)
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_cart']) && isset($_POST['id_keranjang_item'])) {
     $id_keranjang_item = intval($_POST['id_keranjang_item']);
     $action_cart = $_POST['action_cart'];
     $id_obat_untuk_stok_check = null;
     $jumlah_saat_ini = 0;
 
-    // 1. Dapatkan id_obat dan jumlah saat ini dari keranjang berdasarkan id_keranjang_item
     $item_query_sql = "SELECT id_obat, jumlah FROM keranjang WHERE id = ?";
     $stmt_item = mysqli_prepare($conn, $item_query_sql);
 
@@ -72,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_cart']) && iss
             error_log("pembayaran.php ERROR: Gagal mysqli_prepare untuk SELECT stok FROM obat: " . mysqli_error($conn));
         }
 
-        if (!isset($_SESSION['pesan_notif']) || $_SESSION['pesan_notif_tipe'] !== 'notif-gagal') { // Hanya proses jika tidak ada error sebelumnya
+        if (!isset($_SESSION['pesan_notif']) || $_SESSION['pesan_notif_tipe'] !== 'notif-gagal') { 
             if ($action_cart === 'plus') {
                 if (($jumlah_saat_ini + 1) <= $stok_obat) {
                     $update_sql = "UPDATE keranjang SET jumlah = jumlah + 1 WHERE id = ?";
@@ -101,9 +97,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_cart']) && iss
             }
         }
     }
-
-    // header("Location: pembayaran.php");
-    // exit;
 }
 ?>
 
@@ -113,7 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_cart']) && iss
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pembayaran - Obatsaku</title>
-    <link rel="stylesheet" href="../assets/css/pembayaran.css"> <!-- Pastikan path CSS benar -->
+    <link rel="stylesheet" href="../assets/css/pembayaran.css"> 
     <style>
         body { font-family: Arial, sans-serif; margin: 0; background-color: #f4f7f6; color: #333; }
         .container { max-width: 800px; margin: 20px auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 0 15px rgba(0,0,0,0.1); }
@@ -173,7 +166,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_cart']) && iss
         <div class="judul-nota-print" style="display:none;">NOTA PEMBELIAN OBATSAKU</div>
         <?php
         $sql_keranjang = "SELECT id, id_obat, nama_produk, harga, jumlah FROM keranjang";
-        // Jika keranjang per pengguna: $sql_keranjang .= " WHERE username = '$username_pengguna'";
         $result_keranjang = mysqli_query($conn, $sql_keranjang);
         $total_pembayaran = 0;
         $items_for_js = [];
@@ -249,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action_cart']) && iss
 async function prosesDanCetak() {
     const itemsToProcess = <?= json_encode($items_for_js); ?>;
     const totalPembayaran = <?= $total_pembayaran; ?>;
-    const usernamePembeli = '<?= $username_pengguna; ?>'; // Username diambil dari PHP session
+    const usernamePembeli = '<?= $username_pengguna; ?>'; 
 
     const btnProses = document.getElementById('btnProsesPesanan');
 
@@ -266,29 +258,22 @@ async function prosesDanCetak() {
     btnProses.innerText = 'Memproses...';
 
     try {
-        const response = await fetch('proses_pesanan.php', { // Pastikan path ini benar
+        const response = await fetch('proses_pesanan.php', { 
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                items: itemsToProcess,
-                total_keseluruhan: totalPembayaran,
-                username_pembeli: usernamePembeli,
-                // Anda bisa tambahkan data lain jika ada formnya di halaman pembayaran
-                // Contoh:
-                // nama_penerima: document.getElementById('nama_penerima_input') ? document.getElementById('nama_penerima_input').value : "Pelanggan",
-                // alamat_penerima: document.getElementById('alamat_input') ? document.getElementById('alamat_input').value : "",
-                tipe_pesanan: "Umum" // Default atau ambil dari input jika ada
+            items: itemsToProcess,
+            total_keseluruhan: totalPembayaran,
+            username_pembeli: usernamePembeli
             })
         });
 
-        // Selalu coba parse JSON, bahkan jika status tidak ok, untuk melihat pesan error dari server
         let result;
         try {
             result = await response.json();
         } catch (e) {
-            // Jika gagal parse JSON, coba baca sebagai teks untuk melihat output error HTML
             const errorText = await response.text();
             console.error('Fetch Error: Gagal parse JSON. Respons Server:', errorText);
             alert('Terjadi kesalahan format respons dari server. Cek konsol (F12) untuk detail.');
@@ -301,7 +286,7 @@ async function prosesDanCetak() {
         if (response.ok && result.success) {
             alert(result.message || "Pesanan berhasil diproses!");
 
-            const nomorWA = "6285367336284"; // GANTI DENGAN NOMOR WA TUJUAN ANDA
+            const nomorWA = "6285367336284"; 
             let pesanWA = `*Pesanan Baru Diterima (ID: ${result.id_pesanan})*\n\n`;
             pesanWA += `Halo Admin Obatsaku,\nAda pesanan baru atas nama: ${usernamePembeli}\nDetail:\n`;
             itemsToProcess.forEach(item => {
@@ -309,31 +294,32 @@ async function prosesDanCetak() {
             });
             const totalFormatted = `Rp${Number(totalPembayaran).toLocaleString('id-ID')}`;
             pesanWA += `\n*Total Pembayaran:* ${totalFormatted}\n\n`;
-            pesanWA += `Silakan segera proses pesanan ini. Terima kasih.\n`;
+            if (result.tipe_pesanan === "Resep") {
+                pesanWA += `‼️ *Catatan:* Pesanan ini mengandung obat resep. Harap segera konfirmasi resep via WhatsApp, Dengan melampirkan Resep Dokter.`;
+            } else {
+                pesanWA += `Silakan segera proses pesanan ini. Terima kasih.`;
+            }
 
             const waUrl = `https://wa.me/${nomorWA}?text=${encodeURIComponent(pesanWA)}`;
             window.open(waUrl, '_blank');
 
-            // Tampilkan judul nota sebelum print
             const judulNota = document.querySelector('#nota-area .judul-nota-print');
             if(judulNota) judulNota.style.display = 'block';
             
             window.print();
             
-            if(judulNota) judulNota.style.display = 'none'; // Sembunyikan lagi setelah print
+            if(judulNota) judulNota.style.display = 'none'; 
 
-            // Reload halaman untuk update tampilan (keranjang kosong, notif dari session)
             window.location.href = 'pembayaran.php';
 
         } else {
-            // Jika response.ok false ATAU result.success false
             console.error('Server Response Error:', result);
             alert('Gagal memproses pesanan: ' + (result.message || `Server merespons dengan status ${response.status}. Cek konsol (F12) untuk detail.`));
             btnProses.disabled = false;
             btnProses.innerText = 'Selesaikan Pesanan, Cetak Nota & Kirim WA';
         }
 
-    } catch (error) { // Error pada fetch itu sendiri (misal, network error)
+    } catch (error) { 
         console.error('Fetch Error (catch):', error);
         alert('Terjadi kesalahan saat menghubungi server. Pastikan server berjalan dan koneksi internet Anda stabil. Cek konsol (F12).');
         btnProses.disabled = false;
